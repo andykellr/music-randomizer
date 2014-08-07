@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6157" systemVersion="14A237a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6157"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6205"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -10,9 +10,17 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target">
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Music_Randomizer" customModuleProvider="target">
             <connections>
+                <outlet property="copyButton" destination="I1o-gb-c5p" id="XGc-Bq-6w7"/>
+                <outlet property="copyFilesClick" destination="I1o-gb-c5p" id="aLC-5I-SEK"/>
+                <outlet property="destination" destination="VNS-UO-CND" id="kr3-XV-lZj"/>
+                <outlet property="playlist" destination="W3W-5V-CI6" id="vm3-od-osT"/>
+                <outlet property="progress" destination="mMi-oS-b82" id="7Q0-0A-jfd"/>
+                <outlet property="scrollView" destination="nCv-bS-k7E" id="6kL-i9-3dD"/>
+                <outlet property="status" destination="k0B-HU-5Ly" id="YqY-fh-U0y"/>
+                <outlet property="subfolders" destination="18W-e2-PtZ" id="3pw-WC-LlY"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -63,7 +71,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="File" id="dMs-cI-mzQ">
+                <menuItem title="File" hidden="YES" id="dMs-cI-mzQ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="File" id="bib-Uj-vzu">
                         <items>
@@ -127,7 +135,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Edit" id="5QF-Oa-p0T">
+                <menuItem title="Edit" hidden="YES" id="5QF-Oa-p0T">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Edit" id="W48-6f-4Dl">
                         <items>
@@ -346,7 +354,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Format" id="jxT-CU-nIS">
+                <menuItem title="Format" hidden="YES" id="jxT-CU-nIS">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Format" id="GEO-Iw-cKr">
                         <items>
@@ -608,7 +616,7 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="View" id="H8h-7b-M4v">
+                <menuItem title="View" hidden="YES" id="H8h-7b-M4v">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="View" id="HyV-fh-RgO">
                         <items>
@@ -670,11 +678,130 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I1o-gb-c5p">
+                        <rect key="frame" x="14" y="13" width="104" height="32"/>
+                        <buttonCell key="cell" type="push" title="Copy Files" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fz2-ra-FS6">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="copyFilesClick:" target="Voe-Tx-rLC" id="uqJ-FM-Tuj"/>
+                        </connections>
+                    </button>
+                    <progressIndicator maxValue="100" displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="mMi-oS-b82">
+                        <rect key="frame" x="120" y="20" width="332" height="20"/>
+                    </progressIndicator>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k0B-HU-5Ly" userLabel="Status">
+                        <rect key="frame" x="458" y="22" width="4" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="4lI-HU-HmZ">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kBP-0A-qFl">
+                        <rect key="frame" x="18" y="323" width="96" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Path to Playlist" id="Xym-DE-f49">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K4k-H1-4Kl">
+                        <rect key="frame" x="17" y="298" width="97" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Path to Output" id="W3y-YC-aTl">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="W3W-5V-CI6" userLabel="Playlist">
+                        <rect key="frame" x="120" y="320" width="340" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="gKw-1O-08S">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VNS-UO-CND">
+                        <rect key="frame" x="120" y="295" width="340" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="0h1-6t-I0C">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="18W-e2-PtZ" userLabel="Subfolders">
+                        <rect key="frame" x="118" y="268" width="100" height="26"/>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="WFj-fD-ZTL">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="kNY-yH-kNM"/>
+                        </popUpButtonCell>
+                    </popUpButton>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCv-bS-k7E">
+                        <rect key="frame" x="19" y="47" width="441" height="218"/>
+                        <clipView key="contentView" id="W8i-u1-IJr">
+                            <rect key="frame" x="1" y="1" width="223" height="133"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="kLP-dC-HOt">
+                                    <rect key="frame" x="0.0" y="0.0" width="223" height="133"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="439" height="216"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <size key="minSize" width="439" height="216"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="viF-Xn-wiL">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="MGo-8Y-0GP">
+                            <rect key="frame" x="224" y="1" width="15" height="133"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UoB-LW-sET">
+                        <rect key="frame" x="43" y="273" width="71" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Subfolders" id="WDe-gb-NB9">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="VNS-UO-CND" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="43" id="2Wv-1j-PT3"/>
+                    <constraint firstItem="I1o-gb-c5p" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="2a2-r8-Iz3"/>
+                    <constraint firstItem="mMi-oS-b82" firstAttribute="leading" secondItem="I1o-gb-c5p" secondAttribute="trailing" constant="8" id="E26-zI-7IM"/>
+                    <constraint firstAttribute="bottom" secondItem="I1o-gb-c5p" secondAttribute="bottom" constant="20" id="EhP-NT-u8Y"/>
+                    <constraint firstAttribute="bottom" secondItem="nCv-bS-k7E" secondAttribute="bottom" constant="47" id="Gnc-yl-EOz"/>
+                    <constraint firstItem="W3W-5V-CI6" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="120" id="MJK-pc-TYn"/>
+                    <constraint firstAttribute="trailing" secondItem="nCv-bS-k7E" secondAttribute="trailing" constant="20" id="MJT-Qs-cre"/>
+                    <constraint firstAttribute="trailing" secondItem="k0B-HU-5Ly" secondAttribute="trailing" constant="20" id="N8M-Ij-71J"/>
+                    <constraint firstItem="VNS-UO-CND" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="120" id="Pxz-Kh-ALE"/>
+                    <constraint firstItem="W3W-5V-CI6" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="18" id="Tpn-9w-0eT"/>
+                    <constraint firstAttribute="bottom" secondItem="k0B-HU-5Ly" secondAttribute="bottom" constant="22" id="ffO-80-D93"/>
+                    <constraint firstAttribute="trailing" secondItem="W3W-5V-CI6" secondAttribute="trailing" constant="20" id="mNy-k8-dng"/>
+                    <constraint firstItem="k0B-HU-5Ly" firstAttribute="leading" secondItem="mMi-oS-b82" secondAttribute="trailing" constant="8" id="oSQ-52-pcd"/>
+                    <constraint firstAttribute="trailing" secondItem="VNS-UO-CND" secondAttribute="trailing" constant="20" id="qtt-hY-TuH"/>
+                    <constraint firstItem="nCv-bS-k7E" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="19" id="rba-AV-RBz"/>
+                    <constraint firstAttribute="bottom" secondItem="mMi-oS-b82" secondAttribute="bottom" constant="21" id="rhG-iV-e6K"/>
+                    <constraint firstItem="nCv-bS-k7E" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="95" id="wiA-Wc-p43"/>
+                </constraints>
             </view>
+            <point key="canvasLocation" x="213" y="238"/>
         </window>
     </objects>
 </document>
