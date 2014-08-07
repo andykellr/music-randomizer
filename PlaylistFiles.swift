@@ -27,7 +27,7 @@ class PlaylistFiles {
     }
     
     func digits(num: Int) -> Int {
-        return Int(log10(Float(num))) + 1
+        return Int(log10(Float(num == 0 ? 1 : num))) + 1
     }
     
     func pad(num: Int) -> String {
