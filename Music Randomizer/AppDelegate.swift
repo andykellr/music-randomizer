@@ -86,7 +86,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let list = PlaylistParser().parse(path, ui: ui)
         let files = PlaylistFiles(files: list, destinationPath: destination.stringValue, subfolderCount: subfoldersValue)
         
-        ui.log("Found \(files.count) files in playlist:")
+        ui.log("Found \(files.count) files in playlist.")
         
         ui.setupProgress(files.count)
         

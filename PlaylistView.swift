@@ -52,7 +52,7 @@ class PlaylistView {
     
     func logError(error: NSError?) {
         if let err = error {
-            logText += "\n\(err.description)\n\n"
+            logText += "\n\(err.localizedDescription)\n\n"
         }
         sync()
     }

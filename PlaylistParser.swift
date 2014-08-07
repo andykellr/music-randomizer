@@ -98,7 +98,7 @@ class PlaylistParser {
         var error: NSError?
         let data = NSData.dataWithContentsOfFile(path, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: &error)
         if let err = error {
-            err.description
+            ui.logError(error)
             return SimpleList()
         }
         else {
