@@ -413,6 +413,7 @@
 				114F1A001993D90E00122FDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		114F1A011993D90E00122FDF /* Build configuration list for PBXNativeTarget "Music RandomizerTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +422,7 @@
 				114F1A031993D90E00122FDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

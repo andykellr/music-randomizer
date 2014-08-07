@@ -712,7 +712,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="kLP-dC-HOt">
-                                    <rect key="frame" x="0.0" y="0.0" width="223" height="216"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="223" height="237"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="424" height="237"/>
@@ -747,7 +747,7 @@
                         <rect key="frame" x="86" y="404" width="376" height="51"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="4ZX-ZP-Zcd">
                             <font key="font" metaFont="system"/>
-                            <string key="title">Music Randomizer will copy the files in the specified playlist to an output folder, giving each file a random number that will determine the order in which it is played.</string>
+                            <string key="title">Music Randomizer copies the files in a playlist to an output folder, giving each file a random subfolder and prefix. This will determine the order in which each song is played.</string>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
