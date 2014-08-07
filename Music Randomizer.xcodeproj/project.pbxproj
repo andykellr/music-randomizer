@@ -1,0 +1,412 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		114F19E81993D90E00122FDF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F19E71993D90E00122FDF /* main.swift */; };
+		114F19EA1993D90E00122FDF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F19E91993D90E00122FDF /* AppDelegate.swift */; };
+		114F19EC1993D90E00122FDF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 114F19EB1993D90E00122FDF /* Images.xcassets */; };
+		114F19EF1993D90E00122FDF /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 114F19ED1993D90E00122FDF /* MainMenu.xib */; };
+		114F19FB1993D90E00122FDF /* Music_RandomizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F19FA1993D90E00122FDF /* Music_RandomizerTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		114F19F51993D90E00122FDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 114F19DA1993D90E00122FDF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 114F19E11993D90E00122FDF;
+			remoteInfo = "Music Randomizer";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		114F19E21993D90E00122FDF /* Music Randomizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Music Randomizer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		114F19E61993D90E00122FDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		114F19E71993D90E00122FDF /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		114F19E91993D90E00122FDF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		114F19EB1993D90E00122FDF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		114F19EE1993D90E00122FDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		114F19F41993D90E00122FDF /* Music RandomizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Music RandomizerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		114F19F91993D90E00122FDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		114F19FA1993D90E00122FDF /* Music_RandomizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music_RandomizerTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		114F19DF1993D90E00122FDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		114F19F11993D90E00122FDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		114F19D91993D90E00122FDF = {
+			isa = PBXGroup;
+			children = (
+				114F19E41993D90E00122FDF /* Music Randomizer */,
+				114F19F71993D90E00122FDF /* Music RandomizerTests */,
+				114F19E31993D90E00122FDF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		114F19E31993D90E00122FDF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				114F19E21993D90E00122FDF /* Music Randomizer.app */,
+				114F19F41993D90E00122FDF /* Music RandomizerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		114F19E41993D90E00122FDF /* Music Randomizer */ = {
+			isa = PBXGroup;
+			children = (
+				114F19E91993D90E00122FDF /* AppDelegate.swift */,
+				114F19EB1993D90E00122FDF /* Images.xcassets */,
+				114F19ED1993D90E00122FDF /* MainMenu.xib */,
+				114F19E51993D90E00122FDF /* Supporting Files */,
+			);
+			path = "Music Randomizer";
+			sourceTree = "<group>";
+		};
+		114F19E51993D90E00122FDF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				114F19E61993D90E00122FDF /* Info.plist */,
+				114F19E71993D90E00122FDF /* main.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		114F19F71993D90E00122FDF /* Music RandomizerTests */ = {
+			isa = PBXGroup;
+			children = (
+				114F19FA1993D90E00122FDF /* Music_RandomizerTests.swift */,
+				114F19F81993D90E00122FDF /* Supporting Files */,
+			);
+			path = "Music RandomizerTests";
+			sourceTree = "<group>";
+		};
+		114F19F81993D90E00122FDF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				114F19F91993D90E00122FDF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		114F19E11993D90E00122FDF /* Music Randomizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 114F19FE1993D90E00122FDF /* Build configuration list for PBXNativeTarget "Music Randomizer" */;
+			buildPhases = (
+				114F19DE1993D90E00122FDF /* Sources */,
+				114F19DF1993D90E00122FDF /* Frameworks */,
+				114F19E01993D90E00122FDF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Music Randomizer";
+			productName = "Music Randomizer";
+			productReference = 114F19E21993D90E00122FDF /* Music Randomizer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		114F19F31993D90E00122FDF /* Music RandomizerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 114F1A011993D90E00122FDF /* Build configuration list for PBXNativeTarget "Music RandomizerTests" */;
+			buildPhases = (
+				114F19F01993D90E00122FDF /* Sources */,
+				114F19F11993D90E00122FDF /* Frameworks */,
+				114F19F21993D90E00122FDF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				114F19F61993D90E00122FDF /* PBXTargetDependency */,
+			);
+			name = "Music RandomizerTests";
+			productName = "Music RandomizerTests";
+			productReference = 114F19F41993D90E00122FDF /* Music RandomizerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		114F19DA1993D90E00122FDF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = AppWelder;
+				TargetAttributes = {
+					114F19E11993D90E00122FDF = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					114F19F31993D90E00122FDF = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 114F19E11993D90E00122FDF;
+					};
+				};
+			};
+			buildConfigurationList = 114F19DD1993D90E00122FDF /* Build configuration list for PBXProject "Music Randomizer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 114F19D91993D90E00122FDF;
+			productRefGroup = 114F19E31993D90E00122FDF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				114F19E11993D90E00122FDF /* Music Randomizer */,
+				114F19F31993D90E00122FDF /* Music RandomizerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		114F19E01993D90E00122FDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				114F19EC1993D90E00122FDF /* Images.xcassets in Resources */,
+				114F19EF1993D90E00122FDF /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		114F19F21993D90E00122FDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		114F19DE1993D90E00122FDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				114F19EA1993D90E00122FDF /* AppDelegate.swift in Sources */,
+				114F19E81993D90E00122FDF /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		114F19F01993D90E00122FDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				114F19FB1993D90E00122FDF /* Music_RandomizerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		114F19F61993D90E00122FDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 114F19E11993D90E00122FDF /* Music Randomizer */;
+			targetProxy = 114F19F51993D90E00122FDF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		114F19ED1993D90E00122FDF /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				114F19EE1993D90E00122FDF /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		114F19FC1993D90E00122FDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		114F19FD1993D90E00122FDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		114F19FF1993D90E00122FDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Music Randomizer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		114F1A001993D90E00122FDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Music Randomizer/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		114F1A021993D90E00122FDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Music RandomizerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Music Randomizer.app/Contents/MacOS/Music Randomizer";
+			};
+			name = Debug;
+		};
+		114F1A031993D90E00122FDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Music RandomizerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Music Randomizer.app/Contents/MacOS/Music Randomizer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		114F19DD1993D90E00122FDF /* Build configuration list for PBXProject "Music Randomizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				114F19FC1993D90E00122FDF /* Debug */,
+				114F19FD1993D90E00122FDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		114F19FE1993D90E00122FDF /* Build configuration list for PBXNativeTarget "Music Randomizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				114F19FF1993D90E00122FDF /* Debug */,
+				114F1A001993D90E00122FDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		114F1A011993D90E00122FDF /* Build configuration list for PBXNativeTarget "Music RandomizerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				114F1A021993D90E00122FDF /* Debug */,
+				114F1A031993D90E00122FDF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 114F19DA1993D90E00122FDF /* Project object */;
+}
