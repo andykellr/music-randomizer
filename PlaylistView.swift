@@ -10,15 +10,20 @@ import Foundation
 
 class PlaylistView {
     
+    weak var ui: AppDelegate!
+
     private var logText: String = ""
     private var progressMaxValue: Double = 1.0
     private var progressIndeterminate: Bool = true
     private var progressDoubleValue: Double = 0
     private var statusText: String = ""
-    weak var app: AppDelegate?
+    private var playlistSummary: String = ""
+    private var destinationSummary: String = ""
+    private var playlistInProgress: Bool = false
+    private var destinationInProgress: Bool = false
     
-    init(app: AppDelegate) {
-        self.app = app
+    init(ui: AppDelegate) {
+        self.ui = ui
     }
 
     func busy() {
@@ -28,10 +33,30 @@ class PlaylistView {
         sync()
     }
     
+    func setPlaylistInProgress(playlistInProgress: Bool) {
+        self.playlistInProgress = playlistInProgress
+        sync()
+    }
+    
+    func setDestinationInProgress(destinationInProgress: Bool) {
+        self.destinationInProgress = destinationInProgress
+        sync()
+    }
+    
     func setupProgress(max: Int) {
         progressDoubleValue = 0
         progressIndeterminate = false
         progressMaxValue = Double(max)
+        sync()
+    }
+    
+    func setPlaylistSummary(playlistSummary: String) {
+        self.playlistSummary = playlistSummary
+        sync()
+    }
+    
+    func setDestinationSummary(destinationSummary: String) {
+        self.destinationSummary = destinationSummary
         sync()
     }
     
@@ -59,21 +84,22 @@ class PlaylistView {
     
     // i originally thought we had to dispatch to the main queue to modify the UI, but that's not the case.
     func sync() {
-        dispatch_sync(dispatch_get_main_queue()) {
+        foreground {
             self.sync_()
         }
     }
     
     func sync_() {
-        if let ui = app {
-            if (logText != "") {
-                ui.output.insertText(logText)
-            }
-            ui.progress.maxValue = progressMaxValue
-            ui.progress.indeterminate = progressIndeterminate
-            ui.progress.doubleValue = progressDoubleValue
-            ui.status.stringValue = statusText
-            logText = ""
+        if (logText != "") {
+            ui.output.insertText(logText)
         }
+        ui.progress.maxValue = progressMaxValue
+        ui.progress.indeterminate = progressIndeterminate
+        ui.progress.doubleValue = progressDoubleValue
+        ui.status.stringValue = statusText
+        ui.playlistSummary.stringValue = playlistSummary
+        ui.destinationSummary.stringValue = destinationSummary
+        logText = ""
+        
     }
 }

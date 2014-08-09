@@ -28,3 +28,33 @@ func unicodeToAscii(str: String) -> String {
     return NSString(data: data, encoding: NSASCIIStringEncoding)
     
 }
+
+
+//
+// runs a block in the background asynchronously
+//
+func background(block: () -> Void) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        block()
+    })
+}
+
+
+//
+// runs a block in the foreground (ui thread) synchronously
+//
+func foreground(block: () -> Void) {
+    // only use dispatch_sync if we're not on the main thread already
+    if (NSThread.isMainThread()) {
+        block()
+    }
+    else {
+        dispatch_sync(dispatch_get_main_queue()) {
+            block()
+        }
+    }
+}
+
+func formattedByteSize(size: Int) -> String {
+    return NSByteCountFormatter.stringFromByteCount(Int64(size), countStyle: NSByteCountFormatterCountStyle.File)
+}

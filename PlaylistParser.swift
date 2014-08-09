@@ -17,28 +17,53 @@ class PlaylistParser {
     class Delegate: NSObject, NSXMLParserDelegate {
         enum State {
             case AfterKeyStart
-            case AfterLocationKey
-            case AfterLocationStringStart
-            case AfterLocationString
+            case AfterKey
+            case AfterValueStart
+            case AfterValue
             case Other
         }
         
+        // for feedback on the parsing process
         let ui: PlaylistView
+
+        // state and key/value tracking
         var state: State = .Other
-        var current: String = ""
-        var items: SimpleList = SimpleList()
-        var fileprefix = "file://localhost"
+        var key: String = ""
+        var value: String = ""
+        
+        // the current entry we're building
+        var entry: PlaylistEntry = PlaylistEntry()
+        
+        // the list we're building
+        var playlist: Playlist = Playlist()
         
         init(ui: PlaylistView) {
             self.ui = ui;
         }
         
-        func parser(parser: NSXMLParser!,didStartElement elementName: String!, namespaceURI: String!, qualifiedName : String!, attributes attributeDict: NSDictionary!) {
+        // the XML playlist format uses URLs and we need to remove the percent encoding
+        func location(var loc: String) -> String {
+            // we'll trim this from each file
+            let fileprefix = "file://localhost"
+            
+            // strip the prefix if we have one
+            if (loc.hasPrefix(fileprefix)) {
+                loc = (loc as NSString).substringFromIndex(countElements(fileprefix))
+            }
+            
+            return loc.stringByRemovingPercentEncoding
+        }
+        
+        func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName : String!, attributes attributeDict: NSDictionary!) {
             
             switch (state) {
-            case .AfterLocationKey:
-                if (elementName == "string") {
-                    state = .AfterLocationStringStart
+            case .AfterKey:
+                switch (elementName!) {
+                case "string", "integer", "date":
+                    state = .AfterValueStart
+
+                default:
+                    break;
                 }
                 
             default:
@@ -54,34 +79,54 @@ class PlaylistParser {
         
         func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!) {
             
-            if (state == .AfterLocationString) {
-
-                // strip the prefix if we have one
-                if (current.hasPrefix(fileprefix)) {
-                    current = (current as NSString).substringFromIndex(countElements(fileprefix))
-                }
-
-                items.append(current)
-                ui.setStatusText("Found \(items.count) files")
+            if (state == .AfterValue) {
                 
-                current = ""
+                switch (key) {
+                case "Location":
+                    entry.path = location(value)
+                    
+                case "Persistent ID":
+                    entry.persistentId = value
+                    
+                case "Size":
+                    if let size = value.toInt() {
+                        entry.size = size
+                    }
+                    
+                default:
+                    break;
+                }
+                
+                value = ""
                 state = .Other
+            }
+            else if (elementName == "dict") {
+
+                // end of a playlist entry, append
+                if (entry.valid) {
+                    
+                    // include this entry
+                    playlist.append(entry)
+                    
+                    // report our findings
+                    ui.setPlaylistSummary(playlist.summary)
+                }
+                
+                // reset
+                entry = PlaylistEntry()
             }
         }
         
         func parser(parser: NSXMLParser!, foundCharacters string: String!) {
             
             switch (state) {
-            case .AfterKeyStart:
-                if (string == "Location") {
-                    state = .AfterLocationKey
-                }
+            case .AfterKeyStart, .AfterKey:
+                key = string
+                state = .AfterKey
                 
-            case .AfterLocationStringStart, .AfterLocationString:
-                
-                // the XML playlist format uses URLs and we need to remove the percent encoding
-                current += string.stringByRemovingPercentEncoding
-                state = .AfterLocationString
+            case .AfterValueStart, .AfterValue:
+                value += string
+                state = .AfterValue
                 
             default:
                 break;
@@ -93,20 +138,23 @@ class PlaylistParser {
         }
     }
     
-    func parse(path: String, ui: PlaylistView) -> SimpleList {
+    func parse(path: String, ui: PlaylistView) -> Playlist {
         
         var error: NSError?
         let data = NSData.dataWithContentsOfFile(path, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: &error)
         if let err = error {
             ui.logError(error)
-            return SimpleList()
+            return Playlist()
         }
         else {
+            
+            ui.setStatusText("Reading...")
             let parser = NSXMLParser(data: data)
             let delegate = Delegate(ui: ui)
             parser.delegate = delegate
             parser.parse()
-            return delegate.items
+            ui.setStatusText("Done")
+            return delegate.playlist
         }
     }
     

@@ -16,6 +16,8 @@
 		114F1A091993D96500122FDF /* PlaylistFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F1A051993D96500122FDF /* PlaylistFiles.swift */; };
 		114F1A0A1993D96500122FDF /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F1A061993D96500122FDF /* PlaylistView.swift */; };
 		114F1A0B1993D96500122FDF /* SimpleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114F1A071993D96500122FDF /* SimpleList.swift */; };
+		11C8FAAD199554E1004FADA6 /* FolderStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C8FAAC199554E1004FADA6 /* FolderStats.swift */; };
+		11E49A761995104600AB28C4 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E49A751995104600AB28C4 /* Playlist.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		114F1A051993D96500122FDF /* PlaylistFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaylistFiles.swift; path = ../PlaylistFiles.swift; sourceTree = "<group>"; };
 		114F1A061993D96500122FDF /* PlaylistView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlaylistView.swift; path = ../PlaylistView.swift; sourceTree = "<group>"; };
 		114F1A071993D96500122FDF /* SimpleList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "\U0010SimpleList.swift"; path = "../\U0010SimpleList.swift"; sourceTree = "<group>"; };
+		11C8FAAC199554E1004FADA6 /* FolderStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderStats.swift; sourceTree = "<group>"; };
+		11E49A751995104600AB28C4 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Playlist.swift; path = ../Playlist.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +69,7 @@
 		114F19D91993D90E00122FDF = {
 			isa = PBXGroup;
 			children = (
+				11C8FAAC199554E1004FADA6 /* FolderStats.swift */,
 				114F19E41993D90E00122FDF /* Music Randomizer */,
 				114F19F71993D90E00122FDF /* Music RandomizerTests */,
 				114F19E31993D90E00122FDF /* Products */,
@@ -86,6 +91,7 @@
 				114F19E91993D90E00122FDF /* AppDelegate.swift */,
 				114F19EB1993D90E00122FDF /* Images.xcassets */,
 				114F19ED1993D90E00122FDF /* MainMenu.xib */,
+				11E49A751995104600AB28C4 /* Playlist.swift */,
 				114F1A041993D96500122FDF /* PlaylistParser.swift */,
 				114F1A051993D96500122FDF /* PlaylistFiles.swift */,
 				114F1A061993D96500122FDF /* PlaylistView.swift */,
@@ -223,9 +229,11 @@
 				114F1A0B1993D96500122FDF /* SimpleList.swift in Sources */,
 				114F19EA1993D90E00122FDF /* AppDelegate.swift in Sources */,
 				114F1A081993D96500122FDF /* PlaylistParser.swift in Sources */,
+				11E49A761995104600AB28C4 /* Playlist.swift in Sources */,
 				114F19E81993D90E00122FDF /* main.swift in Sources */,
 				114F1A091993D96500122FDF /* PlaylistFiles.swift in Sources */,
 				114F1A0A1993D96500122FDF /* PlaylistView.swift in Sources */,
+				11C8FAAD199554E1004FADA6 /* FolderStats.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
