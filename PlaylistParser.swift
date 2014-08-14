@@ -35,10 +35,11 @@ class PlaylistParser {
         var entry: PlaylistEntry = PlaylistEntry()
         
         // the list we're building
-        var playlist: Playlist = Playlist()
+        let playlist: Playlist
         
-        init(ui: PlaylistView) {
+        init(playlist: Playlist, ui: PlaylistView) {
             self.ui = ui;
+            self.playlist = playlist
         }
         
         // the XML playlist format uses URLs and we need to remove the percent encoding
@@ -140,21 +141,23 @@ class PlaylistParser {
     
     func parse(path: String, ui: PlaylistView) -> Playlist {
         
+        let playlist = Playlist(path: path)
+        
         var error: NSError?
         let data = NSData.dataWithContentsOfFile(path, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: &error)
         if let err = error {
             ui.logError(error)
-            return Playlist()
+            return playlist
         }
         else {
             
             ui.setStatusText("Reading...")
             let parser = NSXMLParser(data: data)
-            let delegate = Delegate(ui: ui)
+            let delegate = Delegate(playlist: playlist, ui: ui)
             parser.delegate = delegate
             parser.parse()
             ui.setStatusText("Done")
-            return delegate.playlist
+            return playlist
         }
     }
     

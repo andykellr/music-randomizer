@@ -10,15 +10,21 @@ import Foundation
 
 class PlaylistEntry {
     
+    var path: String = ""
+    var size: Int = 0
+    var persistentId: String = ""
+
+    init() {}
+    init(path: String, size: Int) {
+        self.path = path
+        self.size = size
+    }
+    
     // ignore videos
     let ignoreExtensions = [
         "m4v": true,
         "mp4": true
     ]
-    
-    var path: String = ""
-    var size: Int = 0
-    var persistentId: String = ""
     
     var valid: Bool {
         get {
@@ -36,6 +42,12 @@ class PlaylistEntry {
 class Playlist: SimpleList {
 
     var size: Int = 0
+    let path: String
+
+    init(path: String) {
+        self.path = path
+        super.init()
+    }
     
     override func append(value: AnyObject) {
         super.append(value)
@@ -44,8 +56,13 @@ class Playlist: SimpleList {
         }
     }
     
+    override func clear() {
+        super.clear()
+        size = 0
+    }
+    
     var summary: String {
-        return "Songs: \(count)\nSize: \(formattedByteSize(size))"
+        return "Path: \(path)\nSongs: \(count)\nSize: \(formattedByteSize(size))"
     }
     
 }

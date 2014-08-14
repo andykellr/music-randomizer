@@ -41,6 +41,10 @@ class PlaylistFiles {
         return str
     }
     
+    func stripRandom(name: String) -> String {
+        return name.stringByReplacingRegularExpression(pattern: "^\\[(\\d+)\\] ", withString: "")
+    }
+    
     func randomIndex(ceiling: Int) -> Int {
         return Int(arc4random_uniform(UInt32(ceiling)))
     }
@@ -61,9 +65,9 @@ class PlaylistFiles {
     }
 
     // returns (src,dest,name)
-    func getPaths(index: Int, file: String) -> (String,String,String) {
+    func getPaths(index: Int, file: String) -> (destination: String, name: String) {
         let random = randoms[index]
-        let name = file.lastPathComponent
+        let name = stripRandom(file.lastPathComponent)
         
         // 1-based folder name with 0-padding
         let folderNumber = pad(random % subfolderCount + 1, width: digits(subfolderCount))
@@ -78,7 +82,7 @@ class PlaylistFiles {
 
         NSLog("\(file) - \(name)")
         
-        return (file, dest, name)
+        return (dest, name)
     }
     
     

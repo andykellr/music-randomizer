@@ -12,9 +12,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                             
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var copyButton: NSButton!
+    @IBOutlet weak var reshuffleButton: NSButton!
     @IBOutlet weak var progress: NSProgressIndicator!
-    @IBOutlet weak var playlist: NSTextField!
-    @IBOutlet weak var destination: NSTextField!
     @IBOutlet weak var subfolders: NSPopUpButton!
     @IBOutlet weak var scrollView: NSScrollView!
     @IBOutlet weak var status: NSTextField!
@@ -35,9 +34,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         open.beginSheetModalForWindow(window, completionHandler: {
             if ($0 == NSOKButton) {
                 let path = open.URL.path
-                self.playlist.stringValue = path
                 background {
-                    self.list = PlaylistParser().parse(path, ui: self.ui)
+                    self.playlist = PlaylistParser().parse(path, ui: self.ui)
                 }
             }
         })
@@ -52,10 +50,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         open.beginSheetModalForWindow(window, completionHandler: {
             if ($0 == NSOKButton) {
                 let path = open.URL.path
-                self.destination.stringValue = path
                 background {
-                    self.ui.log(path)
-                    var stats = FolderStats(path: path, ui: self.ui)
+                    self.folder = FolderStats(path: path, ui: self.ui)
                 }
             }
         })
@@ -67,6 +63,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.copyFiles()
         }
     }
+    @IBAction func reshuffleClick(sender: AnyObject) {
+        background {
+            self.reshuffle()
+        }
+    }
     
     var ui: PlaylistView!
     var output: NSTextView {
@@ -74,7 +75,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // a parsed playlist that will be initialized when a file is opened
-    var list: SimpleList?
+    var playlist: Playlist? {
+        didSet {
+            updateButtonStates(busy: false)
+        }
+    }
+    var folder: FolderStats? {
+        didSet {
+            updateButtonStates(busy: false)
+        }
+    }
+    func updateButtonStates(#busy: Bool) {
+        copyButton.enabled = !busy && folder != nil && playlist != nil
+        reshuffleButton.enabled = !busy && folder != nil
+    }
     
     let fs = NSFileManager.defaultManager()
     
@@ -83,8 +97,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func setDefaults() {
-        playlist.stringValue = "~/Desktop/Tesla.xml".stringByExpandingTildeInPath
-        destination.stringValue = "~/Desktop/test".stringByExpandingTildeInPath
         status.stringValue = ""
         playlistSummary.stringValue = ""
         destinationSummary.stringValue = ""
@@ -93,6 +105,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let options = [Int](1...10).map { String($0 * 5) }
         subfolders.addItemsWithTitles(options)
         subfolders.selectItemWithTitle("10")
+        
+        updateButtonStates(busy: false)
     }
     
     func removeAnyExistingFile(path: String) -> Bool {
@@ -122,48 +136,91 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func parsePlaylist(path: String) {
-        list = PlaylistParser().parse(path, ui: ui)
-    }
-    
     func copyFiles() {
         progress.doubleValue = 0
         
-        let path = playlist.stringValue
-        
-        ui.busy()
-        
-        if list == nil {
-            list = PlaylistParser().parse(path, ui: ui)
+        if let p = playlist {
+            if let f = folder {
+                updateButtonStates(busy: true)
+                ui.busy()
+                
+                let files = PlaylistFiles(files: p, destinationPath: f.path, subfolderCount: subfoldersValue)
+                
+                ui.log("Found \(files.count) files in playlist.")
+                
+                ui.setupProgress(files.count)
+                
+                let iterator = files.files.iterator()
+                while let (obj: AnyObject, i: Int) = iterator.next() {
+                    let file = obj as PlaylistEntry
+                    
+                    ui.setStatusText("\(i+1) of \(files.count)")
+                    
+                    let src = file.path
+                    var (dest, name) = files.getPaths(i, file: src)
+                    var error: NSError?
+                    
+                    ui.log("\(src) => \(dest)")
+                    
+                    // we can't overwrite using copyItemAtPath, so we delete first
+                    if removeAnyExistingFile(dest) {
+                        mkdirs(dest)
+                        fs.copyItemAtPath(src, toPath: dest, error: &error)
+                        ui.logError(error)
+                    }
+                    
+                    ui.setProgress(i+1)
+                }
+                
+                ui.setStatusText("Finished")
+                updateButtonStates(busy: false)
+                
+                f.refresh()
+            }
         }
-        let files = PlaylistFiles(files: list!, destinationPath: destination.stringValue, subfolderCount: subfoldersValue)
+    }
+    
+    func reshuffle() {
+        progress.doubleValue = 0
         
-        ui.log("Found \(files.count) files in playlist.")
-        
-        ui.setupProgress(files.count)
-        
-        let iterator = files.files.iterator()
-        while let (obj: AnyObject, i: Int) = iterator.next() {
-            let file = obj as PlaylistEntry
+        if let f = folder {
+            updateButtonStates(busy: true)
             
-            ui.setStatusText("\(i+1) of \(files.count)")
+            let files = PlaylistFiles(files: f.playlist, destinationPath: f.path, subfolderCount: subfoldersValue)
             
-            var (src, dest, name) = files.getPaths(i, file: file.path)
-            var error: NSError?
+            ui.setupProgress(files.count)
             
-            ui.log("\(src) => \(dest)")
-            
-            // we can't overwrite using copyItemAtPath, so we delete first
-            if removeAnyExistingFile(dest) {
-                mkdirs(dest)
-                fs.copyItemAtPath(src, toPath: dest, error: &error)
-                ui.logError(error)
+            let iterator = files.files.iterator()
+            while let cur = iterator.next() {
+                let file = cur.value as PlaylistEntry
+                let i = cur.index
+
+                ui.setStatusText("\(i+1) of \(files.count)")
+                
+                let src = file.path
+                var (dest, name) = files.getPaths(i, file: src)
+                var error: NSError?
+                
+                ui.log("\(src) => \(dest)")
+                
+                // make sure nothing is already there. in the unlikely case that something is there, just do nothing.
+                if !fs.fileExistsAtPath(dest) {
+                    mkdirs(dest)
+                    fs.moveItemAtPath(src, toPath: dest, error: &error)
+                    ui.logError(error)
+                }
+                else {
+                    ui.log("- Skipping because file already exists at \(dest)")
+                }
+                
+                ui.setProgress(i+1)
             }
             
-            ui.setProgress(i+1)
+            ui.setStatusText("Finished")
+            updateButtonStates(busy: false)
+            
+            f.refresh()
         }
-        
-        ui.setStatusText("Finished")
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {

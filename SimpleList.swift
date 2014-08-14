@@ -38,7 +38,7 @@ public class SimpleList {
             return current != nil
         }
         
-        public func next() -> (AnyObject,Int)? {
+        public func next() -> (value: AnyObject, index: Int)? {
             if let c = current {
                 // get the value
                 let value: AnyObject = c.value
@@ -75,6 +75,12 @@ public class SimpleList {
     
     public func iterator() -> Iterator {
         return Iterator(first: head)
+    }
+    
+    public func clear() {
+        head = nil
+        tail = nil
+        count = 0
     }
     
 }
