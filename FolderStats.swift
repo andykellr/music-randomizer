@@ -8,6 +8,9 @@
 
 import Foundation
 
+//
+// Assembles information about an output folder, using the Playlist to collect the files
+//
 class FolderStats {
 
     let path: String
