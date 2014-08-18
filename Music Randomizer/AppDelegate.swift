@@ -8,6 +8,23 @@
 
 import Cocoa
 
+
+extension NSURL {
+    //
+    // Simpler version of getResourceValue
+    //
+    func getResourceValue(forKey: String) -> AnyObject? {
+        var value: AnyObject?
+        var error: NSError?
+        self.getResourceValue(&value, forKey: forKey, error: &error)
+        if error == nil {
+            return value
+        }
+        return nil
+    }
+}
+
+
 class AppDelegate: NSObject, NSApplicationDelegate {
                             
     @IBOutlet weak var window: NSWindow!
@@ -19,6 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var status: NSTextField!
     @IBOutlet weak var playlistSummary: NSTextField!
     @IBOutlet weak var destinationSummary: NSTextField!
+    @IBOutlet weak var outputMenu: NSPopUpButton!
 
     @IBOutlet weak var playlistProgress: NSProgressIndicator!
     @IBOutlet weak var destinationProgress: NSProgressIndicator!
@@ -40,7 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         })
     }
-    @IBAction func outputClick(sender: AnyObject) {
+    func outputClick(sender: AnyObject) {
         let open = NSOpenPanel()
         open.canChooseDirectories = true
         open.canCreateDirectories = true
@@ -55,6 +73,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
         })
+    }
+    func blankClick(sender: AnyObject) {
+        self.folder = nil
+    }
+    func volumeClick(sender: AnyObject) {
+        if let path = outputMenu.selectedItem.representedObject as? NSString {
+            background {
+                self.folder = FolderStats(path: path, ui: self.ui)
+            }
+        }
     }
     
     @IBAction func copyFilesClick(sender: AnyObject) {
@@ -83,6 +111,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var folder: FolderStats? {
         didSet {
             updateButtonStates(busy: false)
+            if folder == nil {
+                destinationSummary.stringValue = ""
+            }
         }
     }
     func updateButtonStates(#busy: Bool) {
@@ -107,6 +138,52 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         subfolders.selectItemWithTitle("10")
         
         updateButtonStates(busy: false)
+        
+        setupOutputMenu()
+    }
+
+    func setupOutputMenu() {
+        // find the volumes and show them in the menu
+        
+        outputMenu.menu.autoenablesItems = false
+        outputMenu.menu.removeAllItems()
+        
+        let fs = NSFileManager.defaultManager()
+        let urls = fs.mountedVolumeURLsIncludingResourceValuesForKeys([NSURLNameKey, NSURLPathKey, NSURLEffectiveIconKey, NSURLVolumeIsEjectableKey], options: NSVolumeEnumerationOptions.SkipHiddenVolumes)
+        
+        let choose = NSMenuItem(title: "Choose an output folder", action: "blankClick:", keyEquivalent: "")
+        outputMenu.menu.addItem(choose)
+        outputMenu.menu.addItem(NSMenuItem.separatorItem())
+
+        let heading = NSMenuItem(title: "Ejectable volumes", action: nil, keyEquivalent: "")
+        heading.enabled = false
+        outputMenu.menu.addItem(heading)
+        
+        for url: NSURL in urls as [NSURL] {
+            if let ejectable = url.getResourceValue(NSURLVolumeIsEjectableKey) as? Bool {
+                if ejectable {
+                    let item = NSMenuItem()
+
+                    item.action = "volumeClick:"
+                    if let title = url.getResourceValue(NSURLNameKey) as? NSString {
+                        item.title = title
+                    }
+                    if let image = url.getResourceValue(NSURLEffectiveIconKey) as? NSImage {
+                        image.size = NSSize(width: 18, height: 18)
+                        item.image = image
+                        item.indentationLevel = 1
+                    }
+                    // store the path
+                    item.representedObject = url.getResourceValue(NSURLPathKey)
+                    
+                    outputMenu.menu.addItem(item)
+                }
+            }
+        }
+
+        outputMenu.menu.addItem(NSMenuItem.separatorItem())
+
+        outputMenu.menu.addItem(NSMenuItem(title: "Other folder...", action: "outputClick:", keyEquivalent: ""))
     }
     
     func removeAnyExistingFile(path: String) -> Bool {
