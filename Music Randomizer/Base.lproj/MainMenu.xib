@@ -681,16 +681,15 @@
         </menu>
         <window title="Music Randomizer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="809" height="428"/>
+            <rect key="contentRect" x="335" y="390" width="650" height="415"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1578"/>
-            <value key="minSize" type="size" width="480" height="400"/>
+            <value key="minSize" type="size" width="650" height="400"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="809" height="428"/>
+                <rect key="frame" x="0.0" y="0.0" width="650" height="415"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O8i-NK-ixe" userLabel="White Background">
-                        <rect key="frame" x="0.0" y="336" width="809" height="92"/>
+                        <rect key="frame" x="0.0" y="323" width="650" height="92"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="92" id="orE-tO-xoY"/>
                         </constraints>
@@ -701,7 +700,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xNJ-bB-cv1">
-                        <rect key="frame" x="91" y="350" width="700" height="58"/>
+                        <rect key="frame" x="91" y="337" width="541" height="58"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="4ZX-ZP-Zcd">
                             <font key="font" metaFont="system"/>
                             <string key="title">Music Randomizer copies the files in a playlist to an output folder, giving each file a random subfolder and prefix. This will determine the order in which each song is played.</string>
@@ -710,17 +709,17 @@
                         </textFieldCell>
                     </textField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jjS-So-8dW">
-                        <rect key="frame" x="20" y="350" width="64" height="64"/>
+                        <rect key="frame" x="20" y="337" width="64" height="64"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Logo" id="C2i-dt-VRq"/>
                     </imageView>
                     <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="YJp-Te-9ZH">
-                        <rect key="frame" x="0.0" y="334" width="809" height="5"/>
+                        <rect key="frame" x="0.0" y="321" width="650" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bKj-sW-eRz">
-                        <rect key="frame" x="13" y="291" width="126" height="32"/>
+                        <rect key="frame" x="13" y="278" width="126" height="32"/>
                         <buttonCell key="cell" type="push" title="XML Playlist..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zpG-gY-gJI">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -730,9 +729,9 @@
                         </connections>
                     </button>
                     <box autoresizesSubviews="NO" title="Source" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="e9V-i6-L9D" userLabel="Source Summary">
-                        <rect key="frame" x="17" y="151" width="376" height="142"/>
+                        <rect key="frame" x="17" y="138" width="297" height="142"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="374" height="140"/>
+                            <rect key="frame" x="1" y="1" width="295" height="140"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lfQ-VH-hx0">
@@ -749,9 +748,9 @@
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <box autoresizesSubviews="NO" title="Destination" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Kxe-Li-NpU" userLabel="Destination Summary">
-                        <rect key="frame" x="409" y="151" width="383" height="142"/>
+                        <rect key="frame" x="330" y="138" width="303" height="142"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="381" height="140"/>
+                            <rect key="frame" x="1" y="1" width="301" height="140"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nnZ-ZR-F2V">
@@ -779,7 +778,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VlF-yz-Fb7">
-                                    <rect key="frame" x="286" y="8" width="82" height="28"/>
+                                    <rect key="frame" x="206" y="8" width="82" height="28"/>
                                     <buttonCell key="cell" type="push" title="Re-shuffle" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hWc-FD-vMH">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="smallSystem"/>
@@ -816,10 +815,10 @@
                         </connections>
                     </button>
                     <progressIndicator maxValue="100" displayedWhenStopped="NO" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="mMi-oS-b82">
-                        <rect key="frame" x="120" y="21" width="661" height="20"/>
+                        <rect key="frame" x="120" y="21" width="502" height="20"/>
                     </progressIndicator>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k0B-HU-5Ly" userLabel="Status">
-                        <rect key="frame" x="787" y="-24" width="4" height="17"/>
+                        <rect key="frame" x="787" y="-37" width="4" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="4lI-HU-HmZ">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -827,7 +826,7 @@
                         </textFieldCell>
                     </textField>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AAv-SM-iXJ" userLabel="Output Menu">
-                        <rect key="frame" x="410" y="295" width="188" height="26"/>
+                        <rect key="frame" x="331" y="282" width="188" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Choose an output folder" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="DeW-wo-CEU" id="Q5B-Hr-gMh">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -844,19 +843,16 @@
                         </connections>
                     </popUpButton>
                     <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="nxJ-3H-ARV" userLabel="Source Progress">
-                        <rect key="frame" x="141" y="300" width="16" height="16"/>
-                    </progressIndicator>
-                    <progressIndicator fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hJV-JG-FYL" userLabel="Destination Progress">
-                        <rect key="frame" x="603" y="300" width="16" height="16"/>
+                        <rect key="frame" x="141" y="287" width="16" height="16"/>
                     </progressIndicator>
                     <box autoresizesSubviews="NO" title="Activity" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="q2Q-Ga-NT0">
-                        <rect key="frame" x="17" y="44" width="775" height="103"/>
+                        <rect key="frame" x="17" y="44" width="616" height="90"/>
                         <view key="contentView">
-                            <rect key="frame" x="1" y="1" width="773" height="87"/>
+                            <rect key="frame" x="1" y="1" width="614" height="74"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCv-bS-k7E" userLabel="Log">
-                                    <rect key="frame" x="13" y="14" width="742" height="63"/>
+                                    <rect key="frame" x="13" y="14" width="583" height="50"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="W8i-u1-IJr">
                                         <rect key="frame" x="1" y="1" width="223" height="133"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -865,10 +861,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="223" height="237"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <size key="minSize" width="731" height="63"/>
+                                                <size key="minSize" width="572" height="50"/>
                                                 <size key="maxSize" width="816" height="10000000"/>
                                                 <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <size key="minSize" width="731" height="63"/>
+                                                <size key="minSize" width="572" height="50"/>
                                                 <size key="maxSize" width="816" height="10000000"/>
                                             </textView>
                                         </subviews>
@@ -894,6 +890,9 @@
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
+                    <progressIndicator fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hJV-JG-FYL" userLabel="Destination Progress">
+                        <rect key="frame" x="524" y="287" width="16" height="16"/>
+                    </progressIndicator>
                 </subviews>
                 <constraints>
                     <constraint firstItem="e9V-i6-L9D" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="137" id="1jJ-Ty-jsD"/>
@@ -901,7 +900,7 @@
                     <constraint firstAttribute="trailing" secondItem="YJp-Te-9ZH" secondAttribute="trailing" id="4jt-0Y-gEo"/>
                     <constraint firstItem="q2Q-Ga-NT0" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="7vH-Os-9mk"/>
                     <constraint firstAttribute="trailing" secondItem="Kxe-Li-NpU" secondAttribute="trailing" constant="20" id="9hw-ab-DWP"/>
-                    <constraint firstItem="e9V-i6-L9D" firstAttribute="width" secondItem="Kxe-Li-NpU" secondAttribute="width" constant="-7" id="CVD-WF-YPV"/>
+                    <constraint firstItem="e9V-i6-L9D" firstAttribute="width" secondItem="Kxe-Li-NpU" secondAttribute="width" constant="-6" id="CVD-WF-YPV"/>
                     <constraint firstItem="YJp-Te-9ZH" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="GWI-IX-sJz"/>
                     <constraint firstItem="bKj-sW-eRz" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="19" id="JQG-f7-3My"/>
                     <constraint firstAttribute="bottom" secondItem="mMi-oS-b82" secondAttribute="bottom" constant="22" id="Jc7-Cj-9kk"/>
@@ -933,7 +932,7 @@
                     <constraint firstItem="O8i-NK-ixe" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="z8c-ye-bK0"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="33.5" y="-88"/>
+            <point key="canvasLocation" x="-46" y="-83.5"/>
         </window>
     </objects>
     <resources>
