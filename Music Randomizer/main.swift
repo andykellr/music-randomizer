@@ -25,7 +25,7 @@ func unicodeToAscii(str: String) -> String {
     
     // this works well for that wonderful Tool album we all love
     let data = str.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)
-    return NSString(data: data, encoding: NSASCIIStringEncoding)
+    return NSString(data: data!, encoding: NSASCIIStringEncoding)
     
 }
 

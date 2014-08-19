@@ -43,16 +43,9 @@ class PlaylistParser {
         }
         
         // the XML playlist format uses URLs and we need to remove the percent encoding
-        func location(var loc: String) -> String {
-            // we'll trim this from each file
-            let fileprefix = "file://localhost"
-            
-            // strip the prefix if we have one
-            if (loc.hasPrefix(fileprefix)) {
-                loc = (loc as NSString).substringFromIndex(countElements(fileprefix))
-            }
-            
-            return loc.stringByRemovingPercentEncoding
+        func location(var loc: String) -> String {            
+            let url = NSURL.URLWithString(loc)
+            return url.path!
         }
         
         func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName : String!, attributes attributeDict: NSDictionary!) {

@@ -51,10 +51,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         open.message = "Choose the XML playlist that you exported from iTunes"
         open.beginSheetModalForWindow(window, completionHandler: {
             if ($0 == NSOKButton) {
-                let path = open.URL.path
+                if let path = open.URL.path {
                 background {
                     self.playlist = PlaylistParser().parse(path, ui: self.ui)
                 }
+}
             }
         })
     }
@@ -67,10 +68,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         open.message = "Choose an output folder. Randomizer folders will be created in this folder."
         open.beginSheetModalForWindow(window, completionHandler: {
             if ($0 == NSOKButton) {
-                let path = open.URL.path
+                if let path = open.URL.path {
                 background {
                     self.folder = FolderStats(path: path, ui: self.ui)
                 }
+}
             }
         })
     }
@@ -222,8 +224,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 ui.busy()
                 
                 let files = PlaylistFiles(files: p, destinationPath: f.path, subfolderCount: subfoldersValue)
-                
-                ui.log("Found \(files.count) files in playlist.")
                 
                 ui.setupProgress(files.count)
                 

@@ -36,7 +36,7 @@ class FolderStats {
         var error: NSError?
         
         // calculate free space
-        let fsAttributes = fs.attributesOfFileSystemForPath(path, error: &error)
+        let fsAttributes = fs.attributesOfFileSystemForPath(path, error: &error)!
         ui.logError(error)
         if let f: AnyObject = fsAttributes[NSFileSystemFreeSize] {
             free = f.integerValue
@@ -54,7 +54,7 @@ class FolderStats {
             }
             
             // include the size
-            let attrs = enumerator.fileAttributes
+            let attrs = enumerator.fileAttributes!
             if let type = attrs[NSFileType] as? NSString {
                 if type == NSFileTypeRegular {
                     if let size = attrs[NSFileSize]?.integerValue {
