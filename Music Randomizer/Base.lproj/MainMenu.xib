@@ -874,7 +874,7 @@
                     <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="nxJ-3H-ARV" userLabel="Source Progress">
                         <rect key="frame" x="141" y="300" width="16" height="16"/>
                     </progressIndicator>
-                    <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hJV-JG-FYL" userLabel="Destination Progress">
+                    <progressIndicator fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hJV-JG-FYL" userLabel="Destination Progress">
                         <rect key="frame" x="603" y="300" width="16" height="16"/>
                     </progressIndicator>
                 </subviews>
@@ -885,7 +885,6 @@
                     <constraint firstAttribute="trailing" secondItem="nCv-bS-k7E" secondAttribute="trailing" constant="20" id="7iI-qP-Zm6"/>
                     <constraint firstAttribute="trailing" secondItem="Kxe-Li-NpU" secondAttribute="trailing" constant="20" id="9hw-ab-DWP"/>
                     <constraint firstItem="e9V-i6-L9D" firstAttribute="width" secondItem="Kxe-Li-NpU" secondAttribute="width" constant="-7" id="CVD-WF-YPV"/>
-                    <constraint firstItem="AAv-SM-iXJ" firstAttribute="centerY" secondItem="hJV-JG-FYL" secondAttribute="centerY" constant="-0.5" id="DnP-aE-Ti9"/>
                     <constraint firstItem="YJp-Te-9ZH" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="GWI-IX-sJz"/>
                     <constraint firstItem="nCv-bS-k7E" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="19" id="Hcx-4Z-JNh"/>
                     <constraint firstItem="bKj-sW-eRz" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="19" id="JQG-f7-3My"/>
@@ -900,7 +899,6 @@
                     <constraint firstItem="nCv-bS-k7E" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="289" id="VdM-ta-mnH"/>
                     <constraint firstItem="bKj-sW-eRz" firstAttribute="leading" secondItem="e9V-i6-L9D" secondAttribute="leading" constant="-1" id="Xyj-V5-qap"/>
                     <constraint firstItem="AAv-SM-iXJ" firstAttribute="leading" secondItem="Kxe-Li-NpU" secondAttribute="leading" id="YBq-Dh-Uc6"/>
-                    <constraint firstItem="hJV-JG-FYL" firstAttribute="leading" secondItem="AAv-SM-iXJ" secondAttribute="trailing" constant="8" id="bD7-Nz-wSb"/>
                     <constraint firstAttribute="bottom" secondItem="nCv-bS-k7E" secondAttribute="bottom" constant="48" id="ea2-eP-FB0"/>
                     <constraint firstItem="e9V-i6-L9D" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="geC-au-bnU"/>
                     <constraint firstItem="mMi-oS-b82" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="120" id="ghP-IS-0Gl"/>

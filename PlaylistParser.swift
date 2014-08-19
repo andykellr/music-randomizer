@@ -136,10 +136,13 @@ class PlaylistParser {
         
         let playlist = Playlist(path: path)
         
+        ui.setPlaylistInProgress(true)
+        
         var error: NSError?
         let data = NSData.dataWithContentsOfFile(path, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: &error)
         if let err = error {
             ui.logError(error)
+            ui.setPlaylistInProgress(false)
             return playlist
         }
         else {
@@ -150,6 +153,7 @@ class PlaylistParser {
             parser.delegate = delegate
             parser.parse()
             ui.setStatusText("Done")
+            ui.setPlaylistInProgress(false)
             return playlist
         }
     }

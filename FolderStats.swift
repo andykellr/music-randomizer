@@ -35,6 +35,8 @@ class FolderStats {
         let fs = NSFileManager.defaultManager()
         var error: NSError?
         
+        ui.setDestinationInProgress(true)
+        
         // calculate free space
         let fsAttributes = fs.attributesOfFileSystemForPath(path, error: &error)!
         ui.logError(error)
@@ -65,6 +67,8 @@ class FolderStats {
                 }
             }
         }
+        
+        ui.setDestinationInProgress(false)
     }
     
     var summary: String {

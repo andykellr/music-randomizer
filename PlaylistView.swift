@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 AppWelder. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 class PlaylistView {
     
@@ -19,8 +19,6 @@ class PlaylistView {
     private var statusText: String = ""
     private var playlistSummary: String = ""
     private var destinationSummary: String = ""
-    private var playlistInProgress: Bool = false
-    private var destinationInProgress: Bool = false
     
     init(ui: AppDelegate) {
         self.ui = ui
@@ -34,13 +32,22 @@ class PlaylistView {
     }
     
     func setPlaylistInProgress(playlistInProgress: Bool) {
-        self.playlistInProgress = playlistInProgress
-        sync()
+        setProgress(ui.playlistProgress, on:playlistInProgress)
     }
     
     func setDestinationInProgress(destinationInProgress: Bool) {
-        self.destinationInProgress = destinationInProgress
-        sync()
+        setProgress(ui.destinationProgress, on: destinationInProgress)
+    }
+    
+    func setProgress(progress: NSProgressIndicator, on: Bool) {
+        foreground {
+            if on {
+                progress.startAnimation(nil)
+            }
+            else {
+                progress.stopAnimation(nil)
+            }
+        }
     }
     
     func setupProgress(max: Int) {
@@ -82,9 +89,9 @@ class PlaylistView {
         sync()
     }
     
-    // i originally thought we had to dispatch to the main queue to modify the UI, but that's not the case.
     func sync() {
         foreground {
+            // perform ui operations on the ui thread
             self.sync_()
         }
     }
