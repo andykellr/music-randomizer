@@ -98,7 +98,22 @@ class PlaylistView {
     
     func sync_() {
         if (logText != "") {
-            ui.output.insertText(logText)
+//            ui.output.insertText(logText)
+            
+            var scrollToBottom = false
+            if let scroll = ui.output.enclosingScrollView?.verticalScroller {
+                scrollToBottom = scroll.doubleValue == 1.0;
+            }
+            
+            // add the text
+            let range = NSMakeRange(ui.output.textStorage.length, 0)
+            ui.output.replaceCharactersInRange(range, withString: logText)
+
+            // scroll if necessary
+            if scrollToBottom {
+                let bounds = ui.output.bounds
+                ui.output.scrollRangeToVisible(NSMakeRange(ui.output.textStorage.length, 0))
+            }
         }
         ui.progress.maxValue = progressMaxValue
         ui.progress.indeterminate = progressIndeterminate

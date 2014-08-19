@@ -237,7 +237,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     var (dest, name) = files.getPaths(i, file: src)
                     var error: NSError?
                     
-                    ui.log("\(src) => \(dest)")
+                    ui.log("\(src) → \(dest)")
                     
                     // we can't overwrite using copyItemAtPath, so we delete first
                     if removeAnyExistingFile(dest) {
@@ -278,7 +278,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 var (dest, name) = files.getPaths(i, file: src)
                 var error: NSError?
                 
-                ui.log("\(src) => \(dest)")
+                ui.log("\(src) → \(dest)")
                 
                 // make sure nothing is already there. in the unlikely case that something is there, just do nothing.
                 if !fs.fileExistsAtPath(dest) {
@@ -287,7 +287,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     ui.logError(error)
                 }
                 else {
-                    ui.log("- Skipping because file already exists at \(dest)")
+                    //ui.log("- Skipping because file already exists at \(dest)")
                 }
                 
                 ui.setProgress(i+1)

@@ -805,34 +805,6 @@
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCv-bS-k7E" userLabel="Log">
-                        <rect key="frame" x="19" y="48" width="770" height="91"/>
-                        <clipView key="contentView" id="W8i-u1-IJr">
-                            <rect key="frame" x="1" y="1" width="223" height="133"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView importsGraphics="NO" findStyle="panel" usesRuler="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="kLP-dC-HOt">
-                                    <rect key="frame" x="0.0" y="0.0" width="223" height="237"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="753" height="89"/>
-                                    <size key="maxSize" width="816" height="10000000"/>
-                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="753" height="89"/>
-                                    <size key="maxSize" width="816" height="10000000"/>
-                                </textView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="viF-Xn-wiL">
-                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="MGo-8Y-0GP">
-                            <rect key="frame" x="224" y="1" width="15" height="133"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I1o-gb-c5p">
                         <rect key="frame" x="14" y="14" width="104" height="32"/>
                         <buttonCell key="cell" type="push" title="Copy Files" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Fz2-ra-FS6">
@@ -877,38 +849,84 @@
                     <progressIndicator fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hJV-JG-FYL" userLabel="Destination Progress">
                         <rect key="frame" x="603" y="300" width="16" height="16"/>
                     </progressIndicator>
+                    <box autoresizesSubviews="NO" title="Activity" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="q2Q-Ga-NT0">
+                        <rect key="frame" x="17" y="44" width="775" height="103"/>
+                        <view key="contentView">
+                            <rect key="frame" x="1" y="1" width="773" height="87"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCv-bS-k7E" userLabel="Log">
+                                    <rect key="frame" x="13" y="14" width="742" height="63"/>
+                                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="W8i-u1-IJr">
+                                        <rect key="frame" x="1" y="1" width="223" height="133"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <textView editable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" findStyle="panel" usesRuler="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" id="kLP-dC-HOt">
+                                                <rect key="frame" x="0.0" y="0.0" width="223" height="237"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <size key="minSize" width="731" height="63"/>
+                                                <size key="maxSize" width="816" height="10000000"/>
+                                                <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <size key="minSize" width="731" height="63"/>
+                                                <size key="maxSize" width="816" height="10000000"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </clipView>
+                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="viF-Xn-wiL">
+                                        <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </scroller>
+                                    <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="mini" horizontal="NO" id="MGo-8Y-0GP">
+                                        <rect key="frame" x="224" y="1" width="15" height="133"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </scroller>
+                                </scrollView>
+                            </subviews>
+                        </view>
+                        <constraints>
+                            <constraint firstItem="nCv-bS-k7E" firstAttribute="top" secondItem="q2Q-Ga-NT0" secondAttribute="top" constant="25" id="2eE-iv-taq"/>
+                            <constraint firstItem="nCv-bS-k7E" firstAttribute="leading" secondItem="q2Q-Ga-NT0" secondAttribute="leading" constant="11" id="IAA-Nf-ixh"/>
+                            <constraint firstAttribute="bottom" secondItem="nCv-bS-k7E" secondAttribute="bottom" constant="11" id="qiJ-gF-bpN"/>
+                            <constraint firstAttribute="trailing" secondItem="nCv-bS-k7E" secondAttribute="trailing" constant="16" id="uNu-80-M37"/>
+                        </constraints>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </box>
                 </subviews>
                 <constraints>
                     <constraint firstItem="e9V-i6-L9D" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="137" id="1jJ-Ty-jsD"/>
                     <constraint firstItem="bKj-sW-eRz" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="109" id="2mu-ni-PEd"/>
                     <constraint firstAttribute="trailing" secondItem="YJp-Te-9ZH" secondAttribute="trailing" id="4jt-0Y-gEo"/>
-                    <constraint firstAttribute="trailing" secondItem="nCv-bS-k7E" secondAttribute="trailing" constant="20" id="7iI-qP-Zm6"/>
+                    <constraint firstItem="q2Q-Ga-NT0" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="7vH-Os-9mk"/>
                     <constraint firstAttribute="trailing" secondItem="Kxe-Li-NpU" secondAttribute="trailing" constant="20" id="9hw-ab-DWP"/>
                     <constraint firstItem="e9V-i6-L9D" firstAttribute="width" secondItem="Kxe-Li-NpU" secondAttribute="width" constant="-7" id="CVD-WF-YPV"/>
                     <constraint firstItem="YJp-Te-9ZH" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="GWI-IX-sJz"/>
-                    <constraint firstItem="nCv-bS-k7E" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="19" id="Hcx-4Z-JNh"/>
                     <constraint firstItem="bKj-sW-eRz" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="19" id="JQG-f7-3My"/>
                     <constraint firstAttribute="bottom" secondItem="mMi-oS-b82" secondAttribute="bottom" constant="22" id="Jc7-Cj-9kk"/>
                     <constraint firstItem="bKj-sW-eRz" firstAttribute="centerY" secondItem="nxJ-3H-ARV" secondAttribute="centerY" constant="-0.5" id="KKy-VD-NTU"/>
                     <constraint firstItem="xNJ-bB-cv1" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="KnJ-Sa-3ch"/>
                     <constraint firstItem="I1o-gb-c5p" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="L5U-Oa-TK8"/>
+                    <constraint firstItem="q2Q-Ga-NT0" firstAttribute="top" secondItem="e9V-i6-L9D" secondAttribute="bottom" constant="8" id="Nr1-rl-y0F"/>
                     <constraint firstItem="YJp-Te-9ZH" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="91" id="OBA-ms-Tv4"/>
                     <constraint firstAttribute="trailing" secondItem="O8i-NK-ixe" secondAttribute="trailing" id="OV6-jv-8le"/>
-                    <constraint firstItem="nCv-bS-k7E" firstAttribute="top" secondItem="Kxe-Li-NpU" secondAttribute="bottom" constant="16" id="TzB-tw-Cqu"/>
+                    <constraint firstAttribute="bottom" secondItem="q2Q-Ga-NT0" secondAttribute="bottom" constant="48" id="Pgz-Xw-Z4h"/>
                     <constraint firstAttribute="trailing" secondItem="xNJ-bB-cv1" secondAttribute="trailing" constant="20" id="UHu-2m-17Q"/>
-                    <constraint firstItem="nCv-bS-k7E" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="289" id="VdM-ta-mnH"/>
                     <constraint firstItem="bKj-sW-eRz" firstAttribute="leading" secondItem="e9V-i6-L9D" secondAttribute="leading" constant="-1" id="Xyj-V5-qap"/>
                     <constraint firstItem="AAv-SM-iXJ" firstAttribute="leading" secondItem="Kxe-Li-NpU" secondAttribute="leading" id="YBq-Dh-Uc6"/>
-                    <constraint firstAttribute="bottom" secondItem="nCv-bS-k7E" secondAttribute="bottom" constant="48" id="ea2-eP-FB0"/>
                     <constraint firstItem="e9V-i6-L9D" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="geC-au-bnU"/>
                     <constraint firstItem="mMi-oS-b82" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="120" id="ghP-IS-0Gl"/>
                     <constraint firstAttribute="bottom" secondItem="I1o-gb-c5p" secondAttribute="bottom" constant="21" id="gqg-dh-fy9"/>
+                    <constraint firstItem="q2Q-Ga-NT0" firstAttribute="top" secondItem="Kxe-Li-NpU" secondAttribute="bottom" constant="8" id="jBe-j0-zKo"/>
                     <constraint firstAttribute="trailing" secondItem="mMi-oS-b82" secondAttribute="trailing" constant="28" id="kRK-6h-rl7"/>
                     <constraint firstItem="xNJ-bB-cv1" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="93" id="lRe-bf-j16"/>
                     <constraint firstItem="O8i-NK-ixe" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="lgb-kE-2pA"/>
                     <constraint firstItem="Kxe-Li-NpU" firstAttribute="leading" secondItem="e9V-i6-L9D" secondAttribute="trailing" constant="22" id="mol-TP-MhL"/>
+                    <constraint firstAttribute="trailing" secondItem="q2Q-Ga-NT0" secondAttribute="trailing" constant="20" id="siB-ZQ-2qr"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="q2Q-Ga-NT0" secondAttribute="bottom" constant="48" id="t8F-rS-M9m"/>
+                    <constraint firstItem="q2Q-Ga-NT0" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="281" id="uIY-MY-Fsb"/>
                     <constraint firstItem="nxJ-3H-ARV" firstAttribute="leading" secondItem="bKj-sW-eRz" secondAttribute="trailing" constant="8" id="vx5-Ka-GqO"/>
-                    <constraint firstItem="nCv-bS-k7E" firstAttribute="top" secondItem="e9V-i6-L9D" secondAttribute="bottom" constant="16" id="x7v-rj-Qnh"/>
                     <constraint firstItem="YJp-Te-9ZH" firstAttribute="top" secondItem="xNJ-bB-cv1" secondAttribute="bottom" constant="13" id="xZu-gS-Kjr"/>
                     <constraint firstItem="Kxe-Li-NpU" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="137" id="yxK-xJ-OcI"/>
                     <constraint firstItem="AAv-SM-iXJ" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="109" id="z5e-gq-fWE"/>
