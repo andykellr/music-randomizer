@@ -52,10 +52,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         open.beginSheetModalForWindow(window, completionHandler: {
             if ($0 == NSOKButton) {
                 if let path = open.URL.path {
-                background {
-                    self.playlist = PlaylistParser().parse(path, ui: self.ui)
+                    self.playlistProgress.startAnimation(nil)
+                    background {
+                        self.playlist = PlaylistParser().parse(path, ui: self.ui)
+                        foreground {
+                            self.playlistProgress.stopAnimation(nil)
+                        }
+                    }
                 }
-}
             }
         })
     }
@@ -69,10 +73,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         open.beginSheetModalForWindow(window, completionHandler: {
             if ($0 == NSOKButton) {
                 if let path = open.URL.path {
-                background {
-                    self.folder = FolderStats(path: path, ui: self.ui)
+                    self.destinationProgress.startAnimation(nil)
+                    background {
+                        self.folder = FolderStats(path: path, ui: self.ui)
+                        foreground {
+                            self.destinationProgress.stopAnimation(nil)
+                        }
+                    }
                 }
-}
             }
         })
     }

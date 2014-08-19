@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6206.8" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6205"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6206.8"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -729,9 +729,6 @@
                             <action selector="playlistClick:" target="Voe-Tx-rLC" id="uat-X7-et2"/>
                         </connections>
                     </button>
-                    <progressIndicator fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="nxJ-3H-ARV" userLabel="Source Progress">
-                        <rect key="frame" x="141" y="298" width="249" height="20"/>
-                    </progressIndicator>
                     <box autoresizesSubviews="NO" title="Source" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="e9V-i6-L9D" userLabel="Source Summary">
                         <rect key="frame" x="17" y="151" width="376" height="142"/>
                         <view key="contentView">
@@ -751,9 +748,6 @@
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
-                    <progressIndicator fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="hJV-JG-FYL" userLabel="Destination Progress">
-                        <rect key="frame" x="603" y="298" width="186" height="20"/>
-                    </progressIndicator>
                     <box autoresizesSubviews="NO" title="Destination" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Kxe-Li-NpU" userLabel="Destination Summary">
                         <rect key="frame" x="409" y="151" width="383" height="142"/>
                         <view key="contentView">
@@ -877,6 +871,12 @@
                             <action selector="outputSelected:" target="Voe-Tx-rLC" id="P4b-jN-wsk"/>
                         </connections>
                     </popUpButton>
+                    <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="nxJ-3H-ARV" userLabel="Source Progress">
+                        <rect key="frame" x="141" y="300" width="16" height="16"/>
+                    </progressIndicator>
+                    <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hJV-JG-FYL" userLabel="Destination Progress">
+                        <rect key="frame" x="603" y="300" width="16" height="16"/>
+                    </progressIndicator>
                 </subviews>
                 <constraints>
                     <constraint firstItem="e9V-i6-L9D" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="137" id="1jJ-Ty-jsD"/>
@@ -885,10 +885,12 @@
                     <constraint firstAttribute="trailing" secondItem="nCv-bS-k7E" secondAttribute="trailing" constant="20" id="7iI-qP-Zm6"/>
                     <constraint firstAttribute="trailing" secondItem="Kxe-Li-NpU" secondAttribute="trailing" constant="20" id="9hw-ab-DWP"/>
                     <constraint firstItem="e9V-i6-L9D" firstAttribute="width" secondItem="Kxe-Li-NpU" secondAttribute="width" constant="-7" id="CVD-WF-YPV"/>
+                    <constraint firstItem="AAv-SM-iXJ" firstAttribute="centerY" secondItem="hJV-JG-FYL" secondAttribute="centerY" constant="-0.5" id="DnP-aE-Ti9"/>
                     <constraint firstItem="YJp-Te-9ZH" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="GWI-IX-sJz"/>
                     <constraint firstItem="nCv-bS-k7E" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="19" id="Hcx-4Z-JNh"/>
                     <constraint firstItem="bKj-sW-eRz" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="19" id="JQG-f7-3My"/>
                     <constraint firstAttribute="bottom" secondItem="mMi-oS-b82" secondAttribute="bottom" constant="22" id="Jc7-Cj-9kk"/>
+                    <constraint firstItem="bKj-sW-eRz" firstAttribute="centerY" secondItem="nxJ-3H-ARV" secondAttribute="centerY" constant="-0.5" id="KKy-VD-NTU"/>
                     <constraint firstItem="xNJ-bB-cv1" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="KnJ-Sa-3ch"/>
                     <constraint firstItem="I1o-gb-c5p" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="L5U-Oa-TK8"/>
                     <constraint firstItem="YJp-Te-9ZH" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="91" id="OBA-ms-Tv4"/>
@@ -898,6 +900,7 @@
                     <constraint firstItem="nCv-bS-k7E" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="289" id="VdM-ta-mnH"/>
                     <constraint firstItem="bKj-sW-eRz" firstAttribute="leading" secondItem="e9V-i6-L9D" secondAttribute="leading" constant="-1" id="Xyj-V5-qap"/>
                     <constraint firstItem="AAv-SM-iXJ" firstAttribute="leading" secondItem="Kxe-Li-NpU" secondAttribute="leading" id="YBq-Dh-Uc6"/>
+                    <constraint firstItem="hJV-JG-FYL" firstAttribute="leading" secondItem="AAv-SM-iXJ" secondAttribute="trailing" constant="8" id="bD7-Nz-wSb"/>
                     <constraint firstAttribute="bottom" secondItem="nCv-bS-k7E" secondAttribute="bottom" constant="48" id="ea2-eP-FB0"/>
                     <constraint firstItem="e9V-i6-L9D" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="geC-au-bnU"/>
                     <constraint firstItem="mMi-oS-b82" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="120" id="ghP-IS-0Gl"/>
@@ -906,6 +909,7 @@
                     <constraint firstItem="xNJ-bB-cv1" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="93" id="lRe-bf-j16"/>
                     <constraint firstItem="O8i-NK-ixe" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="lgb-kE-2pA"/>
                     <constraint firstItem="Kxe-Li-NpU" firstAttribute="leading" secondItem="e9V-i6-L9D" secondAttribute="trailing" constant="22" id="mol-TP-MhL"/>
+                    <constraint firstItem="nxJ-3H-ARV" firstAttribute="leading" secondItem="bKj-sW-eRz" secondAttribute="trailing" constant="8" id="vx5-Ka-GqO"/>
                     <constraint firstItem="nCv-bS-k7E" firstAttribute="top" secondItem="e9V-i6-L9D" secondAttribute="bottom" constant="16" id="x7v-rj-Qnh"/>
                     <constraint firstItem="YJp-Te-9ZH" firstAttribute="top" secondItem="xNJ-bB-cv1" secondAttribute="bottom" constant="13" id="xZu-gS-Kjr"/>
                     <constraint firstItem="Kxe-Li-NpU" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="137" id="yxK-xJ-OcI"/>
