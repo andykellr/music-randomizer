@@ -32,7 +32,7 @@ class PlaylistView {
     }
     
     func setPlaylistInProgress(playlistInProgress: Bool) {
-        setProgress(ui.playlistProgress, on:playlistInProgress)
+//        setProgress(ui.playlistProgress, on:playlistInProgress)
     }
     
     func setDestinationInProgress(destinationInProgress: Bool) {
@@ -119,7 +119,7 @@ class PlaylistView {
         ui.progress.indeterminate = progressIndeterminate
         ui.progress.doubleValue = progressDoubleValue
         ui.status.stringValue = statusText
-        ui.playlistSummary.stringValue = playlistSummary
+//        ui.playlistSummary.stringValue = playlistSummary
         ui.destinationSummary.stringValue = destinationSummary
         logText = ""
         

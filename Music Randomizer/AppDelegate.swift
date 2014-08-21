@@ -26,17 +26,17 @@ extension NSURL {
 class AppDelegate: NSObject, NSApplicationDelegate {
                             
     @IBOutlet weak var window: NSWindow!
-    @IBOutlet weak var copyButton: NSButton!
+//    @IBOutlet weak var copyButton: NSButton!
     @IBOutlet weak var reshuffleButton: NSButton!
     @IBOutlet weak var progress: NSProgressIndicator!
     @IBOutlet weak var subfolders: NSPopUpButton!
     @IBOutlet weak var scrollView: NSScrollView!
     @IBOutlet weak var status: NSTextField!
-    @IBOutlet weak var playlistSummary: NSTextField!
+//    @IBOutlet weak var playlistSummary: NSTextField!
     @IBOutlet weak var destinationSummary: NSTextField!
     @IBOutlet weak var outputMenu: NSPopUpButton!
 
-    @IBOutlet weak var playlistProgress: NSProgressIndicator!
+//    @IBOutlet weak var playlistProgress: NSProgressIndicator!
     @IBOutlet weak var destinationProgress: NSProgressIndicator!
     
     @IBOutlet weak var activityWindow: NSPanel!
@@ -44,24 +44,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func windowActivityClick(sender: AnyObject) {
         activityWindow.setIsVisible(true)
     }
-    @IBAction func playlistClick(sender: AnyObject) {
-        let open = NSOpenPanel()
-        open.canChooseDirectories = false
-        open.canCreateDirectories = false
-        open.canChooseFiles = true
-        open.allowsMultipleSelection = false
-        open.allowedFileTypes = [ "xml" ]
-        open.message = "Choose the XML playlist that you exported from iTunes"
-        open.beginSheetModalForWindow(window, completionHandler: {
-            if ($0 == NSOKButton) {
-                if let path = open.URL.path {
-                    background {
-                        self.playlist = PlaylistParser().parse(path, ui: self.ui)
-                    }
-                }
-            }
-        })
-    }
+//    @IBAction func playlistClick(sender: AnyObject) {
+//        let open = NSOpenPanel()
+//        open.canChooseDirectories = false
+//        open.canCreateDirectories = false
+//        open.canChooseFiles = true
+//        open.allowsMultipleSelection = false
+//        open.allowedFileTypes = [ "xml" ]
+//        open.message = "Choose the XML playlist that you exported from iTunes"
+//        open.beginSheetModalForWindow(window, completionHandler: {
+//            if ($0 == NSOKButton) {
+//                if let path = open.URL.path {
+//                    background {
+//                        self.playlist = PlaylistParser().parse(path, ui: self.ui)
+//                    }
+//                }
+//            }
+//        })
+//    }
     func outputClick(sender: AnyObject) {
         let open = NSOpenPanel()
         open.canChooseDirectories = true
@@ -90,12 +90,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    @IBAction func copyFilesClick(sender: AnyObject) {
-        // do the copy in the background because on USB 2.0 this can take hours
-        background {
-            self.copyFiles()
-        }
-    }
+//    @IBAction func copyFilesClick(sender: AnyObject) {
+//        // do the copy in the background because on USB 2.0 this can take hours
+//        background {
+//            self.copyFiles()
+//        }
+//    }
     @IBAction func reshuffleClick(sender: AnyObject) {
         background {
             self.reshuffle()
@@ -122,7 +122,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     func updateButtonStates(#busy: Bool) {
-        copyButton.enabled = !busy && folder != nil && playlist != nil
+//        copyButton.enabled = !busy && folder != nil && playlist != nil
         reshuffleButton.enabled = !busy && folder != nil && folder!.playlist.count > 0
     }
     
@@ -134,7 +134,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func setDefaults() {
         status.stringValue = ""
-        playlistSummary.stringValue = ""
+//        playlistSummary.stringValue = ""
         destinationSummary.stringValue = ""
         
         // 5-50, by 5s
