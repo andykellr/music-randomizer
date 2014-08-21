@@ -308,8 +308,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Insert code here to initialize your application
         setDefaults()
-
-        activityWindow.setIsVisible(true)
     }
     
     func applicationWillTerminate(aNotification: NSNotification?) {
