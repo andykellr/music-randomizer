@@ -68,7 +68,7 @@ extension String {
     //
     func stringByReplacingRegularExpression(#pattern: String, withString string: String) -> String {
         var error: NSError?
-        let regex = NSRegularExpression(pattern: "^\\[(\\d+)\\] ", options: nil, error: &error)
+        let regex = NSRegularExpression(pattern: pattern, options: nil, error: &error)
         if error == nil {
             let mutable = self.mutableCopy() as NSMutableString
             regex.replaceMatchesInString(mutable, options: nil, range: NSMakeRange(0, mutable.length), withTemplate: string)

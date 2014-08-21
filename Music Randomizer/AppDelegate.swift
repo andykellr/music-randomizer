@@ -8,7 +8,6 @@
 
 import Cocoa
 
-
 extension NSURL {
     //
     // Simpler version of getResourceValue
@@ -23,7 +22,6 @@ extension NSURL {
         return nil
     }
 }
-
 
 class AppDelegate: NSObject, NSApplicationDelegate {
                             
@@ -41,6 +39,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var playlistProgress: NSProgressIndicator!
     @IBOutlet weak var destinationProgress: NSProgressIndicator!
     
+    @IBOutlet weak var activityWindow: NSPanel!
+
+    @IBAction func windowActivityClick(sender: AnyObject) {
+        activityWindow.setIsVisible(true)
+    }
     @IBAction func playlistClick(sender: AnyObject) {
         let open = NSOpenPanel()
         open.canChooseDirectories = false
@@ -120,7 +123,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     func updateButtonStates(#busy: Bool) {
         copyButton.enabled = !busy && folder != nil && playlist != nil
-        reshuffleButton.enabled = !busy && folder != nil
+        reshuffleButton.enabled = !busy && folder != nil && folder!.playlist.count > 0
     }
     
     let fs = NSFileManager.defaultManager()
@@ -305,9 +308,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Insert code here to initialize your application
         setDefaults()
-        
-        // for now, pretend that we clicked the Copy Files button
-        //copyFiles()
+
+        activityWindow.setIsVisible(true)
     }
     
     func applicationWillTerminate(aNotification: NSNotification?) {
