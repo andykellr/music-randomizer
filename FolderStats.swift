@@ -38,34 +38,37 @@ class FolderStats {
         ui.setDestinationInProgress(true)
         
         // calculate free space
-        let fsAttributes = fs.attributesOfFileSystemForPath(path, error: &error)!
-        ui.logError(error)
-        if let f: AnyObject = fsAttributes[NSFileSystemFreeSize] {
+        if let fsAttributes = fs.attributesOfFileSystemForPath(path, error: &error) {
+            if let f: AnyObject = fsAttributes[NSFileSystemFreeSize] {
             free = f.integerValue
-            ui.setDestinationSummary(summary)
-        }
-        
-        // find files
-        let enumerator = fs.enumeratorAtPath(path)
-        while let file = enumerator.nextObject() as? String {
-            
-            // ignore . files like .Spotlight-V100
-            if (file.hasPrefix(".")) {
-                enumerator.skipDescendants()
-                continue
+                ui.setDestinationSummary(summary)
             }
             
-            // include the size
-            let attrs = enumerator.fileAttributes!
-            if let type = attrs[NSFileType] as? NSString {
-                if type == NSFileTypeRegular {
-                    if let size = attrs[NSFileSize]?.integerValue {
-                        let entry = PlaylistEntry(path: path.stringByAppendingPathComponent(file), size: size)
-                        playlist.append(entry)
-                        ui.setDestinationSummary(summary)
+            // find files
+            let enumerator = fs.enumeratorAtPath(path)
+            while let file = enumerator.nextObject() as? String {
+                
+                // ignore . files like .Spotlight-V100
+                if (file.hasPrefix(".")) {
+                    enumerator.skipDescendants()
+                    continue
+                }
+                
+                // include the size
+                let attrs = enumerator.fileAttributes!
+                if let type = attrs[NSFileType] as? NSString {
+                    if type == NSFileTypeRegular {
+                        if let size = attrs[NSFileSize]?.integerValue {
+                            let entry = PlaylistEntry(path: path.stringByAppendingPathComponent(file), size: size)
+                            playlist.append(entry)
+                            ui.setDestinationSummary(summary)
+                        }
                     }
                 }
             }
+        }
+        if let err = error {
+            ui.setDestinationSummary(err.localizedDescription)
         }
         
         ui.setDestinationInProgress(false)
