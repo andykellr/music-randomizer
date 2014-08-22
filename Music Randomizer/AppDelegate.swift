@@ -8,21 +8,6 @@
 
 import Cocoa
 
-extension NSURL {
-    //
-    // Simpler version of getResourceValue
-    //
-    func getResourceValue(forKey: String) -> AnyObject? {
-        var value: AnyObject?
-        var error: NSError?
-        self.getResourceValue(&value, forKey: forKey, error: &error)
-        if error == nil {
-            return value
-        }
-        return nil
-    }
-}
-
 class AppDelegate: NSObject, NSApplicationDelegate {
                             
     @IBOutlet weak var window: NSWindow!
@@ -153,22 +138,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         outputMenu.menu.autoenablesItems = false
         outputMenu.menu.removeAllItems()
         
-        let fs = NSFileManager.defaultManager()
-        let urls = fs.mountedVolumeURLsIncludingResourceValuesForKeys([NSURLNameKey, NSURLPathKey, NSURLEffectiveIconKey, NSURLVolumeIsEjectableKey], options: NSVolumeEnumerationOptions.SkipHiddenVolumes)
-        
         let choose = NSMenuItem(title: "Choose an output folder", action: "blankClick:", keyEquivalent: "")
         outputMenu.menu.addItem(choose)
-        outputMenu.menu.addItem(NSMenuItem.separatorItem())
-
-        let heading = NSMenuItem(title: "Ejectable volumes", action: nil, keyEquivalent: "")
-        heading.enabled = false
-        outputMenu.menu.addItem(heading)
         
-        for url: NSURL in urls as [NSURL] {
-            if let ejectable = url.getResourceValue(NSURLVolumeIsEjectableKey) as? Bool {
-                if ejectable {
-                    let item = NSMenuItem()
+        var didPrintEjectableHeading = false
+        
+        let fs = NSFileManager.defaultManager()
+        let urls = fs.mountedVolumeURLsIncludingResourceValuesForKeys([NSURLNameKey, NSURLPathKey, NSURLEffectiveIconKey, NSURLVolumeIsEjectableKey, NSURLVolumeIsInternalKey, NSURLVolumeIsLocalKey, NSURLVolumeIsRemovableKey], options: NSVolumeEnumerationOptions.SkipHiddenVolumes)
 
+        for url: NSURL in urls as [NSURL] {
+
+            if url.getResourceBool(NSURLVolumeIsEjectableKey, hasValue: true) &&
+                url.getResourceBool(NSURLVolumeIsInternalKey, hasValue: false) &&
+                url.getResourceBool(NSURLVolumeIsLocalKey, hasValue: true) &&
+                url.getResourceBool(NSURLVolumeIsRemovableKey, hasValue: true) {
+                    
+                    if !didPrintEjectableHeading {
+                        outputMenu.menu.addItem(NSMenuItem.separatorItem())
+
+                        let heading = NSMenuItem(title: "Ejectable volumes", action: nil, keyEquivalent: "")
+                        heading.enabled = false
+                        outputMenu.menu.addItem(heading)
+                        didPrintEjectableHeading = true
+                    }
+                    
+                    let item = NSMenuItem()
+                    
                     item.action = "volumeClick:"
                     if let title = url.getResourceValue(NSURLNameKey) as? NSString {
                         item.title = title
@@ -182,13 +177,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     item.representedObject = url.getResourceValue(NSURLPathKey)
                     
                     outputMenu.menu.addItem(item)
-                }
             }
         }
 
         outputMenu.menu.addItem(NSMenuItem.separatorItem())
 
-        outputMenu.menu.addItem(NSMenuItem(title: "Other folder...", action: "outputClick:", keyEquivalent: ""))
+        outputMenu.menu.addItem(NSMenuItem(title: "Choose a folder...", action: "outputClick:", keyEquivalent: ""))
     }
     
     func removeAnyExistingFile(path: String) -> Bool {

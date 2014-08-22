@@ -59,23 +59,3 @@ func formattedByteSize(size: Int) -> String {
     return NSByteCountFormatter.stringFromByteCount(Int64(size), countStyle: NSByteCountFormatterCountStyle.File)
 }
 
-
-extension String {
-    //
-    // Simple regex replace added to String, beacuse you can
-    //
-    // Note that it fails silently, skipping the replace if there is an error
-    //
-    func stringByReplacingRegularExpression(#pattern: String, withString string: String) -> String {
-        var error: NSError?
-        let regex = NSRegularExpression(pattern: pattern, options: nil, error: &error)
-        if error == nil {
-            let mutable = self.mutableCopy() as NSMutableString
-            regex.replaceMatchesInString(mutable, options: nil, range: NSMakeRange(0, mutable.length), withTemplate: string)
-            return mutable
-        }
-        else {
-            return self
-        }
-    }
-}
