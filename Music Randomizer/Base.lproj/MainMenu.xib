@@ -706,15 +706,6 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xNJ-bB-cv1">
-                        <rect key="frame" x="91" y="242" width="366" height="58"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="4ZX-ZP-Zcd">
-                            <font key="font" metaFont="system"/>
-                            <string key="title">Music Randomizer organizes the music files on a drive, giving each file a random folder and prefix. When you play music by Folder, this will simulate random playlists.</string>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jjS-So-8dW">
                         <rect key="frame" x="20" y="242" width="64" height="64"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Logo" id="C2i-dt-VRq"/>
@@ -834,6 +825,15 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xNJ-bB-cv1">
+                        <rect key="frame" x="91" y="245" width="366" height="58"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="4ZX-ZP-Zcd">
+                            <font key="font" metaFont="system"/>
+                            <string key="title">Music Randomizer reorganizes your music, moving each file to a random folder and renaming it with a random prefix. Play music by Folder to simulate random playlists.</string>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="YJp-Te-9ZH" secondAttribute="trailing" id="4jt-0Y-gEo"/>
@@ -842,7 +842,7 @@
                     <constraint firstItem="YJp-Te-9ZH" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="GWI-IX-sJz"/>
                     <constraint firstItem="hJV-JG-FYL" firstAttribute="centerY" secondItem="AAv-SM-iXJ" secondAttribute="centerY" id="IGa-b5-GWM"/>
                     <constraint firstAttribute="bottom" secondItem="mMi-oS-b82" secondAttribute="bottom" constant="20" id="Jc7-Cj-9kk"/>
-                    <constraint firstItem="xNJ-bB-cv1" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="KnJ-Sa-3ch"/>
+                    <constraint firstItem="xNJ-bB-cv1" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="17" id="KnJ-Sa-3ch"/>
                     <constraint firstItem="I1o-gb-c5p" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="L5U-Oa-TK8"/>
                     <constraint firstItem="YJp-Te-9ZH" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="91" id="OBA-ms-Tv4"/>
                     <constraint firstAttribute="trailing" secondItem="O8i-NK-ixe" secondAttribute="trailing" id="OV6-jv-8le"/>
@@ -858,7 +858,7 @@
                     <constraint firstItem="O8i-NK-ixe" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="lgb-kE-2pA"/>
                     <constraint firstItem="Kxe-Li-NpU" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="uDC-y6-0v2"/>
                     <constraint firstItem="k0B-HU-5Ly" firstAttribute="leading" secondItem="mMi-oS-b82" secondAttribute="trailing" constant="8" id="ws3-Bh-7Pg"/>
-                    <constraint firstItem="YJp-Te-9ZH" firstAttribute="top" secondItem="xNJ-bB-cv1" secondAttribute="bottom" constant="13" id="xZu-gS-Kjr"/>
+                    <constraint firstItem="YJp-Te-9ZH" firstAttribute="top" secondItem="xNJ-bB-cv1" secondAttribute="bottom" constant="16" id="xZu-gS-Kjr"/>
                     <constraint firstItem="Kxe-Li-NpU" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="127" id="yxK-xJ-OcI"/>
                     <constraint firstItem="AAv-SM-iXJ" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="100" id="z5e-gq-fWE"/>
                     <constraint firstItem="O8i-NK-ixe" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="z8c-ye-bK0"/>
