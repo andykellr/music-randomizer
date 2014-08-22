@@ -138,7 +138,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         outputMenu.menu.autoenablesItems = false
         outputMenu.menu.removeAllItems()
         
-        let choose = NSMenuItem(title: "Choose an output folder", action: "blankClick:", keyEquivalent: "")
+        let choose = NSMenuItem(title: "Choose a music folder to randomize", action: "blankClick:", keyEquivalent: "")
         outputMenu.menu.addItem(choose)
         
         var didPrintEjectableHeading = false
@@ -169,7 +169,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         item.title = title
                     }
                     if let image = url.getResourceValue(NSURLEffectiveIconKey) as? NSImage {
-                        image.size = NSSize(width: 18, height: 18)
+                        image.size = NSSize(width: 16, height: 16)
                         item.image = image
                         item.indentationLevel = 1
                     }
