@@ -112,11 +112,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     let fs = NSFileManager.defaultManager()
+    let outputMenuDelegate = OutputMenuDelegate()
     
     var subfoldersValue: Int {
         return subfolders.selectedItem.title.toInt()!
     }
-
+    
     func setDefaults() {
         status.stringValue = ""
 //        playlistSummary.stringValue = ""
@@ -129,60 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         updateButtonStates(busy: false)
         
-        setupOutputMenu()
-    }
-
-    func setupOutputMenu() {
-        // find the volumes and show them in the menu
-        
-        outputMenu.menu.autoenablesItems = false
-        outputMenu.menu.removeAllItems()
-        
-        let choose = NSMenuItem(title: "Choose a music folder to randomize", action: "blankClick:", keyEquivalent: "")
-        outputMenu.menu.addItem(choose)
-        
-        var didPrintEjectableHeading = false
-        
-        let fs = NSFileManager.defaultManager()
-        let urls = fs.mountedVolumeURLsIncludingResourceValuesForKeys([NSURLNameKey, NSURLPathKey, NSURLEffectiveIconKey, NSURLVolumeIsEjectableKey, NSURLVolumeIsInternalKey, NSURLVolumeIsLocalKey, NSURLVolumeIsRemovableKey], options: NSVolumeEnumerationOptions.SkipHiddenVolumes)
-
-        for url: NSURL in urls as [NSURL] {
-
-            if url.getResourceBool(NSURLVolumeIsEjectableKey, hasValue: true) &&
-                url.getResourceBool(NSURLVolumeIsInternalKey, hasValue: false) &&
-                url.getResourceBool(NSURLVolumeIsLocalKey, hasValue: true) &&
-                url.getResourceBool(NSURLVolumeIsRemovableKey, hasValue: true) {
-                    
-                    if !didPrintEjectableHeading {
-                        outputMenu.menu.addItem(NSMenuItem.separatorItem())
-
-                        let heading = NSMenuItem(title: "Ejectable volumes", action: nil, keyEquivalent: "")
-                        heading.enabled = false
-                        outputMenu.menu.addItem(heading)
-                        didPrintEjectableHeading = true
-                    }
-                    
-                    let item = NSMenuItem()
-                    
-                    item.action = "volumeClick:"
-                    if let title = url.getResourceValue(NSURLNameKey) as? NSString {
-                        item.title = title
-                    }
-                    if let image = url.getResourceValue(NSURLEffectiveIconKey) as? NSImage {
-                        image.size = NSSize(width: 16, height: 16)
-                        item.image = image
-                        item.indentationLevel = 1
-                    }
-                    // store the path
-                    item.representedObject = url.getResourceValue(NSURLPathKey)
-                    
-                    outputMenu.menu.addItem(item)
-            }
-        }
-
-        outputMenu.menu.addItem(NSMenuItem.separatorItem())
-
-        outputMenu.menu.addItem(NSMenuItem(title: "Choose a folder...", action: "outputClick:", keyEquivalent: ""))
+        outputMenu.menu.delegate = outputMenuDelegate
     }
     
     func removeAnyExistingFile(path: String) -> Bool {
@@ -306,6 +254,64 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillTerminate(aNotification: NSNotification?) {
         // Insert code here to tear down your application
+    }
+ 
+    
+    class OutputMenuDelegate: NSObject, NSMenuDelegate {
+        
+        func menuNeedsUpdate(menu: NSMenu!) {
+            // find the volumes and show them in the menu
+            
+            menu.autoenablesItems = false
+            menu.removeAllItems()
+            
+            let choose = NSMenuItem(title: "Choose a music folder to randomize", action: "blankClick:", keyEquivalent: "")
+            menu.addItem(choose)
+            
+            var didPrintEjectableHeading = false
+            
+            let fs = NSFileManager.defaultManager()
+            let urls = fs.mountedVolumeURLsIncludingResourceValuesForKeys([NSURLNameKey, NSURLPathKey, NSURLEffectiveIconKey, NSURLVolumeIsEjectableKey, NSURLVolumeIsInternalKey, NSURLVolumeIsLocalKey, NSURLVolumeIsRemovableKey], options: NSVolumeEnumerationOptions.SkipHiddenVolumes)
+            
+            for url: NSURL in urls as [NSURL] {
+                
+                if url.getResourceBool(NSURLVolumeIsEjectableKey, hasValue: true) &&
+                    //url.getResourceBool(NSURLVolumeIsInternalKey, hasValue: false) &&
+                    url.getResourceBool(NSURLVolumeIsLocalKey, hasValue: true) &&
+                    url.getResourceBool(NSURLVolumeIsRemovableKey, hasValue: true) {
+                        
+                        if !didPrintEjectableHeading {
+                            menu.addItem(NSMenuItem.separatorItem())
+                            
+                            let heading = NSMenuItem(title: "Ejectable volumes", action: nil, keyEquivalent: "")
+                            heading.enabled = false
+                            menu.addItem(heading)
+                            didPrintEjectableHeading = true
+                        }
+                        
+                        let item = NSMenuItem()
+                        
+                        item.action = "volumeClick:"
+                        if let title = url.getResourceValue(NSURLNameKey) as? NSString {
+                            item.title = title
+                        }
+                        if let image = url.getResourceValue(NSURLEffectiveIconKey) as? NSImage {
+                            image.size = NSSize(width: 16, height: 16)
+                            item.image = image
+                            item.indentationLevel = 1
+                        }
+                        // store the path
+                        item.representedObject = url.getResourceValue(NSURLPathKey)
+                        
+                        menu.addItem(item)
+                }
+            }
+            
+            menu.addItem(NSMenuItem.separatorItem())
+            
+            menu.addItem(NSMenuItem(title: "Choose a folder...", action: "outputClick:", keyEquivalent: ""))
+        }
+        
     }
     
 }
