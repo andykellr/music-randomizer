@@ -742,9 +742,6 @@
                                 </items>
                             </menu>
                         </popUpButtonCell>
-                        <connections>
-                            <action selector="outputSelected:" target="Voe-Tx-rLC" id="P4b-jN-wsk"/>
-                        </connections>
                     </popUpButton>
                     <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hJV-JG-FYL" userLabel="Destination Progress">
                         <rect key="frame" x="211" y="201" width="16" height="16"/>
