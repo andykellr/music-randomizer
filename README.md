@@ -1,5 +1,4 @@
-music-randomizer
+Music Randomizer
 ================
 
-Mac app that randomizes music on a usb drive using random folder numbers and file prefixes. Designed for use with a Tesla Model S.
-
+<a href="http://andykellr.github.io/music-randomizer/">The most advanced car in the world can't shuffle.</a>
