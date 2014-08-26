@@ -328,7 +328,8 @@ img.screenshot {
   border: none;
   margin: 0 auto;
   display: block;
-  max-width: 90%; }
+  width: 90%;
+  max-width: 589px; }
 
 img.dashboard {
   box-shadow: none;
@@ -348,9 +349,9 @@ p.dashboard {
   margin-left: 4px; }
 
 .warning {
-  border: 1px solid #cc9999;
+  border: 1px solid #99aacc;
   padding: 20px 30px;
-  background-color: #ffdddd;
+  background-color: #ddeeff;
   border-radius: 5px;
   margin-top: 4em; }
   .warning b {
@@ -367,5 +368,5 @@ p.dashboard {
     padding: 10px 40px;
     border-radius: 5px; }
     #download a:hover {
-      background-color: #aa2015;
+      background-color: #c02418;
       text-decoration: none; }
