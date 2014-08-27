@@ -14,6 +14,9 @@ import Foundation
 class FolderStats {
 
     let path: String
+    var name: String {
+        return path.lastPathComponent
+    }
     let playlist: Playlist
     weak var ui: PlaylistView!
 

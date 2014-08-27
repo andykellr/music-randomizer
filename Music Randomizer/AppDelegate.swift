@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, FolderMenuDelegate {
                             
     @IBOutlet weak var window: NSWindow!
 //    @IBOutlet weak var copyButton: NSButton!
@@ -47,33 +47,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //            }
 //        })
 //    }
-    func outputClick(sender: AnyObject) {
-        let open = NSOpenPanel()
-        open.canChooseDirectories = true
-        open.canCreateDirectories = true
-        open.canChooseFiles = false
-        open.allowsMultipleSelection = false
-        open.message = "Choose an output folder. Randomizer folders will be created in this folder."
-        open.beginSheetModalForWindow(window, completionHandler: {
-            if ($0 == NSOKButton) {
-                if let path = open.URL.path {
-                    background {
-                        self.folder = FolderStats(path: path, ui: self.ui)
-                    }
-                }
-            }
-        })
-    }
-    func blankClick(sender: AnyObject) {
-        self.folder = nil
-    }
-    func volumeClick(sender: AnyObject) {
-        if let path = outputMenu.selectedItem.representedObject as? NSString {
-            background {
-                self.folder = FolderStats(path: path, ui: self.ui)
-            }
-        }
-    }
     
 //    @IBAction func copyFilesClick(sender: AnyObject) {
 //        // do the copy in the background because on USB 2.0 this can take hours
@@ -88,10 +61,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     var ui: PlaylistView!
+    var folderMenu: FolderMenu!
     var output: NSTextView {
         return scrollView.contentView.documentView as NSTextView
     }
-    
+
     // a parsed playlist that will be initialized when a file is opened
     var playlist: Playlist? {
         didSet {
@@ -112,7 +86,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     let fs = NSFileManager.defaultManager()
-    let outputMenuDelegate = OutputMenuDelegate()
+
+    func folderMenu(menu: FolderMenu, didSelectFolder: FolderStats?) {
+        self.folder = didSelectFolder
+    }
     
     var subfoldersValue: Int {
         return subfolders.selectedItem.title.toInt()!
@@ -129,8 +106,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         subfolders.selectItemWithTitle("10")
         
         updateButtonStates(busy: false)
-        
-        outputMenu.menu.delegate = outputMenuDelegate
     }
     
     func removeAnyExistingFile(path: String) -> Bool {
@@ -247,6 +222,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         ui = PlaylistView(ui: self)
+        folderMenu = FolderMenu(menuButton: outputMenu, ui: ui)
+        folderMenu.delegate = self
         
         // Insert code here to initialize your application
         setDefaults()
@@ -254,64 +231,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillTerminate(aNotification: NSNotification?) {
         // Insert code here to tear down your application
-    }
- 
-    
-    class OutputMenuDelegate: NSObject, NSMenuDelegate {
-        
-        func menuNeedsUpdate(menu: NSMenu!) {
-            // find the volumes and show them in the menu
-            
-            menu.autoenablesItems = false
-            menu.removeAllItems()
-            
-            let choose = NSMenuItem(title: "Choose a music folder to randomize", action: "blankClick:", keyEquivalent: "")
-            menu.addItem(choose)
-            
-            var didPrintEjectableHeading = false
-            
-            let fs = NSFileManager.defaultManager()
-            let urls = fs.mountedVolumeURLsIncludingResourceValuesForKeys([NSURLNameKey, NSURLPathKey, NSURLEffectiveIconKey, NSURLVolumeIsEjectableKey, NSURLVolumeIsInternalKey, NSURLVolumeIsLocalKey, NSURLVolumeIsRemovableKey], options: NSVolumeEnumerationOptions.SkipHiddenVolumes)
-            
-            for url: NSURL in urls as [NSURL] {
-                
-                if url.getResourceBool(NSURLVolumeIsEjectableKey, hasValue: true) &&
-                    //url.getResourceBool(NSURLVolumeIsInternalKey, hasValue: false) &&
-                    url.getResourceBool(NSURLVolumeIsLocalKey, hasValue: true) &&
-                    url.getResourceBool(NSURLVolumeIsRemovableKey, hasValue: true) {
-                        
-                        if !didPrintEjectableHeading {
-                            menu.addItem(NSMenuItem.separatorItem())
-                            
-                            let heading = NSMenuItem(title: "Ejectable volumes", action: nil, keyEquivalent: "")
-                            heading.enabled = false
-                            menu.addItem(heading)
-                            didPrintEjectableHeading = true
-                        }
-                        
-                        let item = NSMenuItem()
-                        
-                        item.action = "volumeClick:"
-                        if let title = url.getResourceValue(NSURLNameKey) as? NSString {
-                            item.title = title
-                        }
-                        if let image = url.getResourceValue(NSURLEffectiveIconKey) as? NSImage {
-                            image.size = NSSize(width: 16, height: 16)
-                            item.image = image
-                            item.indentationLevel = 1
-                        }
-                        // store the path
-                        item.representedObject = url.getResourceValue(NSURLPathKey)
-                        
-                        menu.addItem(item)
-                }
-            }
-            
-            menu.addItem(NSMenuItem.separatorItem())
-            
-            menu.addItem(NSMenuItem(title: "Choose a folder...", action: "outputClick:", keyEquivalent: ""))
-        }
-        
     }
     
 }

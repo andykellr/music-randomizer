@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		110D77AA19A7D32B00579584 /* SimpleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110D77A919A7D32B00579584 /* SimpleList.swift */; };
+		114011A019AE4BFE00EA7EEF /* FolderMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1140119F19AE4BFE00EA7EEF /* FolderMenu.swift */; };
 		114B892819A7D47400B745CE /* FolderStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114B892319A7D47400B745CE /* FolderStats.swift */; };
 		114B892919A7D47400B745CE /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114B892419A7D47400B745CE /* Playlist.swift */; };
 		114B892A19A7D47400B745CE /* PlaylistFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 114B892519A7D47400B745CE /* PlaylistFiles.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		110D77A919A7D32B00579584 /* SimpleList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleList.swift; sourceTree = "<group>"; };
+		1140119F19AE4BFE00EA7EEF /* FolderMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderMenu.swift; sourceTree = "<group>"; };
 		114B892319A7D47400B745CE /* FolderStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderStats.swift; sourceTree = "<group>"; };
 		114B892419A7D47400B745CE /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		114B892519A7D47400B745CE /* PlaylistFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaylistFiles.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				114F19E91993D90E00122FDF /* AppDelegate.swift */,
 				114F19EB1993D90E00122FDF /* Images.xcassets */,
 				114F19ED1993D90E00122FDF /* MainMenu.xib */,
+				1140119F19AE4BFE00EA7EEF /* FolderMenu.swift */,
 				114B892319A7D47400B745CE /* FolderStats.swift */,
 				114B892419A7D47400B745CE /* Playlist.swift */,
 				114B892519A7D47400B745CE /* PlaylistFiles.swift */,
@@ -231,6 +234,7 @@
 			files = (
 				11D1E87119A7B422000A18D7 /* Extensions.swift in Sources */,
 				114B892819A7D47400B745CE /* FolderStats.swift in Sources */,
+				114011A019AE4BFE00EA7EEF /* FolderMenu.swift in Sources */,
 				114F19EA1993D90E00122FDF /* AppDelegate.swift in Sources */,
 				110D77AA19A7D32B00579584 /* SimpleList.swift in Sources */,
 				114B892B19A7D47400B745CE /* PlaylistParser.swift in Sources */,
