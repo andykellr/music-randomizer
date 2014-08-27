@@ -94,14 +94,11 @@ class FolderMenu: NSObject, NSMenuDelegate {
         self.folderPath = menuButton.selectedItem.representedObject as? NSString
     }
     
-    // MARK: - menu button delegate
+    // MARK: - menu button selection
     
-    func clearStates() {
-        for item in menu.itemArray as [NSMenuItem] {
-            item.state = NSOffState
-        }
-    }
-    
+    //
+    // Finds the first non-hidden NSMenuItem with the specified path
+    //
     func findMenuItem(path: String) -> NSMenuItem? {
         for item in menu.itemArray as [NSMenuItem] {
             if let menupath = item.representedObject as? String {
@@ -113,6 +110,9 @@ class FolderMenu: NSObject, NSMenuDelegate {
         return nil
     }
     
+    //
+    // Based on the current folderPath, indicates the current NSMenuItem to select
+    //
     func getItemToSelect() -> NSMenuItem {
         if let path = folderPath {
             if let item = findMenuItem(path) {
@@ -125,13 +125,18 @@ class FolderMenu: NSObject, NSMenuDelegate {
         return chooseMusicItem
     }
     
-    func isChosenFolder() -> Bool {
-        if let path = folderPath {
-            return !isVolume()
+    //
+    // Clears the checkmark from all menu items
+    //
+    func clearStates() {
+        for item in menu.itemArray as [NSMenuItem] {
+            item.state = NSOffState
         }
-        return false
     }
     
+    //
+    // Adds the checkmark next to the selected menu item
+    //
     func selectFolderItem() {
         clearStates()
         
@@ -145,6 +150,15 @@ class FolderMenu: NSObject, NSMenuDelegate {
             chooseMusicItem.state = NSOnState
         }
         
+    }
+
+    // MARK: - type of folderPath selected
+    
+    func isChosenFolder() -> Bool {
+        if let path = folderPath {
+            return !isVolume()
+        }
+        return false
     }
     
     func isVolume() -> Bool {
@@ -174,6 +188,8 @@ class FolderMenu: NSObject, NSMenuDelegate {
             })
         }
     }
+    
+    // MARK: - menu button delegate
     
     func menuNeedsUpdate(menu: NSMenu!) {
         // find the volumes and show them in the menu
