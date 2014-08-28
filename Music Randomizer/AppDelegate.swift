@@ -213,6 +213,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, FolderMenuDelegate {
                 ui.setProgress(i+1)
             }
             
+            ui.setStatusText("Deleting empty folders")
+            f.pruneEmptyFolders()
+
             ui.setStatusText("Finished")
             updateButtonStates(busy: false)
             

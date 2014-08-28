@@ -77,6 +77,35 @@ class FolderStats {
         ui.setDestinationInProgress(false)
     }
     
+    func pruneEmptyFolders() {
+        var error: NSError?
+        
+        let fs = NSFileManager.defaultManager()
+        let subpaths = fs.subpathsAtPath(path) as? [String]
+        if let subs = subpaths {
+            
+            // sort by longest path first so that we remove nested folders before removing parents
+            let sorted = subs.sorted({ (a,b) in
+                let (ca, cb) = (countElements(a), countElements(b))
+                return ca == cb ? a < b : ca > cb
+            })
+            
+            // go through the sorted list removing empty folders
+            for s in sorted {
+                let subpath = path.stringByAppendingPathComponent(s)
+                if fs.contentsOfDirectoryAtPath(subpath, error: &error)?.count == 0 {
+                    
+                    ui.log("Removing empty folder: \(subpath)")
+                    fs.removeItemAtPath(subpath, error: &error)
+                    
+                    ui.logError(error)
+                }
+                // ignore errors at this level
+                error = nil
+            }
+        }
+    }
+    
     var summary: String {
         get {
             let ret = "Path: \(path)\nFiles: \(playlist.count)\nUsed: \(formattedByteSize(playlist.size))"
