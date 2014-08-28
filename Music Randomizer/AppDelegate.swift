@@ -207,7 +207,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, FolderMenuDelegate {
                     ui.logError(error)
                 }
                 else {
-                    //ui.log("- Skipping because file already exists at \(dest)")
+                    ui.log("- Skipping because file already exists at \(dest)")
                 }
                 
                 ui.setProgress(i+1)
