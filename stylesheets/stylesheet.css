@@ -357,6 +357,9 @@ p.dashboard {
   .warning b {
     font-weight: bold; }
 
+a {
+  color: #aa3333; }
+
 #download {
   padding-top: 2em;
   padding-bottom: 1em; }
