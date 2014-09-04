@@ -30,7 +30,7 @@
       <h3 id="project_footnote">Designed for use with the Tesla Model S</h3>
 
     <div id="download">
-      <a href="https://github.com/andykellr/music-randomizer/releases" onclick="ga('send', 'event', 'button', 'click', 'download');">Download</a>
+      <a href="https://github.com/andykellr/music-randomizer/releases" id="dl">Download</a>
     </div>
 
         </header>
@@ -45,7 +45,7 @@
       <p>However, it can play songs by folder.<p>
 
       <p class="dashboard">
-      <img class="dashboard" title="Wouldn't it be cool if I had access to screenshots taken in the car?" src="images/folders.png">
+      <img class="dashboard" title="Taken with my phone. Wouldn't it be cool if I had access to screenshots taken in the car?" src="images/folders.png">
       </p>
       </section>
     </div>
@@ -67,10 +67,10 @@
       on your USB drive will be reorganized into random
       folders. Always backup your music.</p>
 
-      <p>If you find this useful and would like to say thank you, send an email to <a href="mailto:thanks@appwelder.com">thanks@appwelder.com</a>.
+      <p>If you find this useful and would like to say thank you, send an email to <a href="mailto:thanks@appwelder.com" id="mt">thanks@appwelder.com</a>.
 
       <br>Please report issues and feature suggestions
-      using <a href="https://github.com/andykellr/music-randomizer/issues">GitHub Issues</a>.</p>
+      using <a href="https://github.com/andykellr/music-randomizer/issues" id="is">GitHub Issues</a>.</p>
 
       </section>
     </div>
@@ -78,7 +78,7 @@
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Music Randomizer by <a href="https://twitter.com/andykellr">@andykellr</a>
+        <p class="copyright">Music Randomizer by <a href="https://twitter.com/andykellr" id="tw">@andykellr</a>
         <br>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
@@ -93,6 +93,13 @@
   ga('require', 'linkid', 'linkid.js');
   ga('send', 'pageview');
 
+  function c(i,t) {
+    document.getElementById(i).onclick=function() { ga('send','event','button','click',t); }
+  }
+  c('dl','download');
+  c('tw','twitter');
+  c('mt','thanks');
+  c('is','issues');
 </script>
 
   </body>
