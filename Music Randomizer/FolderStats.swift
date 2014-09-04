@@ -48,23 +48,24 @@ class FolderStats {
             }
             
             // find files
-            let enumerator = fs.enumeratorAtPath(path)
-            while let file = enumerator.nextObject() as? String {
+            if let enumerator = fs.enumeratorAtPath(path) {
+                while let file = enumerator.nextObject() as? String {
                 
-                // ignore . files like .Spotlight-V100
-                if (file.hasPrefix(".")) {
-                    enumerator.skipDescendants()
-                    continue
-                }
-                
-                // include the size
-                let attrs = enumerator.fileAttributes!
-                if let type = attrs[NSFileType] as? NSString {
-                    if type == NSFileTypeRegular {
-                        if let size = attrs[NSFileSize]?.integerValue {
-                            let entry = PlaylistEntry(path: path.stringByAppendingPathComponent(file), size: size)
-                            playlist.append(entry)
-                            ui.setDestinationSummary(summary)
+                    // ignore . files like .Spotlight-V100
+                    if (file.hasPrefix(".")) {
+                        enumerator.skipDescendants()
+                        continue
+                    }
+                    
+                    // include the size
+                    let attrs = enumerator.fileAttributes!
+                    if let type = attrs[NSFileType] as? NSString {
+                        if type == NSFileTypeRegular {
+                            if let size = attrs[NSFileSize]?.integerValue {
+                                let entry = PlaylistEntry(path: path.stringByAppendingPathComponent(file), size: size)
+                                playlist.append(entry)
+                                ui.setDestinationSummary(summary)
+                            }
                         }
                     }
                 }
