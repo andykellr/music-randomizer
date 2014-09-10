@@ -44,7 +44,7 @@ class PlaylistParser {
         
         // the XML playlist format uses URLs and we need to remove the percent encoding
         func location(var loc: String) -> String {            
-            let url = NSURL.URLWithString(loc)
+            let url = NSURL(string: loc)
             return url.path!
         }
         
