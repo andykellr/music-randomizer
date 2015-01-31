@@ -19,7 +19,7 @@ extension String {
         let regex = NSRegularExpression(pattern: pattern, options: nil, error: &error)
         if error == nil {
             let mutable = self.mutableCopy() as NSMutableString
-            regex.replaceMatchesInString(mutable, options: nil, range: NSMakeRange(0, mutable.length), withTemplate: string)
+            regex!.replaceMatchesInString(mutable, options: nil, range: NSMakeRange(0, mutable.length), withTemplate: string)
             return mutable
         }
         else {

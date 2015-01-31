@@ -92,7 +92,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, FolderMenuDelegate {
     }
     
     var subfoldersValue: Int {
-        return subfolders.selectedItem.title.toInt()!
+        return subfolders.selectedItem!.title.toInt()!
     }
     
     func setDefaults() {

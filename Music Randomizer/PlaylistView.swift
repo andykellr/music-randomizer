@@ -106,13 +106,13 @@ class PlaylistView {
             }
             
             // add the text
-            let range = NSMakeRange(ui.output.textStorage.length, 0)
+            let range = NSMakeRange(ui.output.textStorage!.length, 0)
             ui.output.replaceCharactersInRange(range, withString: logText)
 
             // scroll if necessary
             if scrollToBottom {
                 let bounds = ui.output.bounds
-                ui.output.scrollRangeToVisible(NSMakeRange(ui.output.textStorage.length, 0))
+                ui.output.scrollRangeToVisible(NSMakeRange(ui.output.textStorage!.length, 0))
             }
         }
         ui.progress.maxValue = progressMaxValue

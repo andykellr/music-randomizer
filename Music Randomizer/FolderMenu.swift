@@ -27,7 +27,7 @@ class FolderMenu: NSObject, NSMenuDelegate {
     let chosenFolderItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
     
     var menu: NSMenu {
-        return menuButton.menu
+        return menuButton.menu!
     }
 
     var folderPath: String? {
@@ -66,7 +66,7 @@ class FolderMenu: NSObject, NSMenuDelegate {
         self.menuButton = menuButton
         self.ui = ui
         super.init()
-        menuButton.menu.delegate = self
+        menuButton.menu!.delegate = self
         chooseMusicItem.target = self
         chooseFolderItem.target = self
         chosenFolderItem.target = self
@@ -83,7 +83,7 @@ class FolderMenu: NSObject, NSMenuDelegate {
         open.message = "Choose an output folder. Randomizer folders will be created in this folder."
         open.beginSheetModalForWindow(ui.ui.window, completionHandler: {
             if ($0 == NSOKButton) {
-                self.folderPath = open.URL.path
+                self.folderPath = open.URL!.path
             }
         })
     }
@@ -91,7 +91,7 @@ class FolderMenu: NSObject, NSMenuDelegate {
         self.folderPath = nil
     }
     func volumeClick(sender: AnyObject) {
-        self.folderPath = menuButton.selectedItem.representedObject as? NSString
+        self.folderPath = menuButton.selectedItem!.representedObject as? NSString
     }
     
     // MARK: - menu button selection
