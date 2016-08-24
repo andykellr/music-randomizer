@@ -373,3 +373,16 @@ a {
     #download a:hover {
       background-color: #c02418;
       text-decoration: none; }
+
+#firmware_update {
+  background: black;
+  padding: 1em 0;
+  background: white; }
+  #firmware_update .inner {
+    padding: 1em;
+    margin: 0 auto;
+    border-radius: 5px; }
+  #firmware_update b {
+    display: block;
+    font-weight: bold;
+    margin-right: 0.5em; }
